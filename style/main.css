@@ -91,13 +91,15 @@ header a {
 #map {
     width: 60%;
     height: 90%;
-    background: red;
 }
 
 #events-container {
     width: 38%;
     height: 90%;
-    background: blue;
+    border-bottom: 1px solid #aaa;
+    border-right: 1px solid #aaa;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 #footer {
