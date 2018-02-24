@@ -22,11 +22,31 @@
                 </div>
             </header>
             <div id="content-container">
-                <div id="map">
-                
+                <div id="map-container" >
+                    <div id="search-container">
+                        <input id="map-search" class="controls" type="text" placeholder="Search Places">
+                    </div>
+                    <div id="map">
+
+                    </div>
                 </div>
                 <div id="events-container">
-                
+                    <div id="event0" class="event">
+                        <div class="event-title">Hack the Valley</div>
+                        <div class="event-location">University of Toronto</div>
+                    </div>
+                    <div id="event1" class="event">
+                        <div class="event-title">Bloor-Yorkville Icefest</div>
+                        <div class="event-location">Village of Yorkville Park</div>
+                    </div>
+                    <div id="event2" class="event">
+                        <div class="event-title">2018 Black Diamond Ball</div>
+                        <div class="event-location">Fairmont Royal York</div>
+                    </div>
+                    <div id="event3" class="event">
+                        <div class="event-title">After Hours Stand Up Comedy</div>
+                        <div class="event-location">Comedy Bar</div>
+                    </div>
                 </div>
             </div>
             <div id="footer">
@@ -35,8 +55,8 @@
             </div>
         </div>
         <script src="js/index.js"></script>
-        <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5HGMs76eh_Yq_XBJX_opDE06AM-1Z64o&callback=initMap">
+        <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5HGMs76eh_Yq_XBJX_opDE06AM-1Z64o&libraries=places&callback=initMap" async defer>
         </script>
 
     </body>

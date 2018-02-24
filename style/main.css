@@ -15,6 +15,7 @@ body {
     text-align: left;
     margin: auto;
     height: 100vh;
+    overflow: auto;
 }
 
 /* box shadow generated with https://www.cssmatic.com/box-shadow */
@@ -27,10 +28,12 @@ body {
     align-items: center;
     width: 100%;
     height: 100%;
+    min-height: 680px;
 }
 
 header {
     width: 100%;
+    min-width: 1150px;
     height: 10%;
     background: none;
     -webkit-box-shadow: 0px 1px 4px -1px rgba(0,0,0,0.75);
@@ -45,8 +48,9 @@ header {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    width: 60%;
-    height: 100%;
+    width: 1150px;
+    height: 100%; 
+    min-width: 1150px;
 }
 
 header a {
@@ -81,16 +85,60 @@ header a {
 }
 
 #content-container {
-    width: 60%;
+    width: 1150px;
+    min-width: 1150px;
     height: 85%;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-#map {
+#map-container {
     width: 60%;
     height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: center;
+}
+
+#map {
+    width: 100%;
+    height: 95%;
+}
+
+#search-container {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 3%;
+    display: flex;
+    justify-content: space-between;
+    align-content: stretch;
+    border-bottom: 1px solid #aaa;
+}
+
+#map-search {
+    margin: 0;
+    padding: 0;
+    width: 95%;
+    height: 100%;
+    border: none;
+    border-bottom: 1px solid #aaa;
+}
+
+#search {
+    padding: 0;
+    margin: 0;
+    width: 23px;
+    height: 23px;
+    background: url("../media/search.png");
+    background-size: 70% 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    border-bottom: 1px solid #aaa;
+    border-left: 1px solid #aaa;
 }
 
 #events-container {
@@ -100,6 +148,36 @@ header a {
     border-right: 1px solid #aaa;
     overflow-x: hidden;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.event {
+    width: 99%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #aaa;
+}
+
+.event-title {
+    margin-left: 10px;   
+}
+
+.event-location {
+    margin-right: 10px;
+}
+
+.event:hover {
+    background-color: #ddd;
+    cursor:pointer;
+}
+
+.event:active {
+    background-color: #aaa;
 }
 
 #footer {
@@ -108,7 +186,7 @@ header a {
     align-items: center;
     width: 60%;
     height: 5%;
-    
+    min-width: 1150px;
 }
 
 #credits {
