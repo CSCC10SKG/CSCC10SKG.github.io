@@ -150,7 +150,6 @@ header a {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-top: 1px solid #aaa;
 }
 
 #tab-items {
@@ -167,26 +166,22 @@ header a {
     border: none;
     width: 50%;
     height: 100%;
-    background: none;
-    border-bottom: 0px solid #aaa;
-    -webkit-box-shadow: inset 0px 0px 1px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: inset 0px 0px 1px 0px rgba(0,0,0,0.75);
-    box-shadow: inset 0px 0px 1px 0px rgba(0,0,0,0.75);
+    background: #aaa;
+    color: #fff;
+    font-size: 10pt;
+    border-bottom: 1px solid #aaa;
 }
 
 .hide-tab {
-    background: #aaa;
-    color: white;
+    background: #fff;
+    color: #3c3d3f;
     border-bottom: 1px solid #aaa;
-    -webkit-box-shadow: inset 0px 0px 1px 0px rgba(0,0,0,0);
-    -moz-box-shadow: inset 0px 0px 1px 0px rgba(0,0,0,0);
-    box-shadow: inset 0px 0px 1px 0px rgba(0,0,0,0);
 }
 
 .tab:hover {
-    background: #ddd;
+    background: #666;
     cursor: pointer;
-    color: #3c3d3f;
+    color: #fff;
     border-bottom: 1px solid #aaa;
 }
 
