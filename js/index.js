@@ -98,4 +98,19 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
                           'Error: The Geolocation service failed.' :
                           'Error: Your browser doesn\'t support geolocation.');
     infoWindow.open(map);
-}   
+}
+
+document.getElementById("events-tab").addEventListener("click", function(){
+    document.getElementById("promotions-tab").classList.add("hide-tab");
+    this.classList.remove("hide-tab");
+    document.getElementById("events-container").style.display = "block";
+    document.getElementById("promotions-container").style.display = "none";
+}); 
+
+document.getElementById("promotions-tab").addEventListener("click", function(){
+    document.getElementById("events-tab").classList.add("hide-tab");
+    this.classList.remove("hide-tab");
+    document.getElementById("promotions-container").style.display = "block";
+    document.getElementById("events-container").style.display = "none";
+});  
+

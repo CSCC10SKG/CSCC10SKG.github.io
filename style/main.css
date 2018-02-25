@@ -141,11 +141,74 @@ header a {
     border-left: 1px solid #aaa;
 }
 
-#events-container {
+#side-container {
     width: 38%;
     height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#tab-items {
+    width: 100%;
+    height: 5%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.tab {
+    padding: 0;
+    margin: 0;
+    border: none;
+    width: 50%;
+    height: 100%;
+    background: none;
+    border-bottom: 0px solid #aaa;
+    -webkit-box-shadow: inset 0px 0px 1px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: inset 0px 0px 1px 0px rgba(0,0,0,0.75);
+    box-shadow: inset 0px 0px 1px 0px rgba(0,0,0,0.75);
+}
+
+.hide-tab {
+    background: #aaa;
+    color: white;
     border-bottom: 1px solid #aaa;
-    border-right: 1px solid #aaa;
+    -webkit-box-shadow: inset 0px 0px 1px 0px rgba(0,0,0,0);
+    -moz-box-shadow: inset 0px 0px 1px 0px rgba(0,0,0,0);
+    box-shadow: inset 0px 0px 1px 0px rgba(0,0,0,0);
+}
+
+.tab:hover {
+    background: #ddd;
+    cursor: pointer;
+    color: #3c3d3f;
+    border-bottom: 1px solid #aaa;
+}
+
+.tab:active {
+    background: #aaa;
+}
+
+#promotions-container {
+    width: 100%;
+    height: 95%;
+    border-bottom: 1px solid #aaa;
+    border-right: 0px solid #aaa;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: none;
+}
+
+#events-container {
+    width: 100%;
+    height: 95%;
+    border-bottom: 1px solid #aaa;
+    border-right: 0px solid #aaa;
     overflow-x: hidden;
     overflow-y: auto;
     display: flex;
@@ -155,7 +218,7 @@ header a {
 }
 
 .event {
-    width: 99%;
+    width: 100%;
     height: 50px;
     display: flex;
     justify-content: space-between;
