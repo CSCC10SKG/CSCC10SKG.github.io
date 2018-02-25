@@ -1,0 +1,17 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap
+    border-right: 1px solid #aaa;
+    height: 100%;
+}
+
+.form-element {
+    background: none;
+    height: 20px;
+    border: none;
+    width: 100%;
+    margin-bottom: 30px;
+}

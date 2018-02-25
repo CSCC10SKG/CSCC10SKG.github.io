@@ -1,0 +1,273 @@
+#logout {
+    background: url("../media/logout.png");
+    background-size: 90% 90%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#login-form-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#login-form {
+    background: #333138;
+    width: 40%;
+    color: #aaa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#login-form > * {
+   width: 100%;
+}
+
+#login-title {
+    
+    height: 40px;
+    font-size: 14pt;
+    width: 85%;
+}
+
+.icon {
+    width: 75px;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.input-container {
+    border-top: 2px solid #66646b;
+    border-bottom: 2px solid #66646b;
+    width: 100%;
+    display: flex;
+    height: 40px;
+    background: #55535a;
+}
+
+.input-container input {
+    vertical-align: middle;
+    text-align: left;
+    height: 100%;
+    line-height: 100%;
+    color: #aaa;
+    font-size: 12pt;
+}
+
+.input-container input:focus {
+    color: #1c98db;
+}
+
+#password-container {
+    border-top: none;
+}
+
+.icon span {
+    width: 18px;
+    height: 18px;
+    filter: invert(60%);
+}
+
+#login-icon span {
+    background: url("../media/profile.png");
+    background-size: 100% 100%;
+}
+
+#password-icon span {
+    background: url("../media/lock.png");
+    background-size: 100% 100%;
+}
+
+#login-btns {
+    width: 85%;
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* buttons generated using http://css3buttongenerator.com */
+
+#login-btns button {
+    width: 45%;
+    height: 100%;
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: Arial;
+    color: #aaa;
+    font-size: 12pt;
+    border: solid #0484c9 2px;
+    text-decoration: none;
+    
+}
+
+#login-btns button:hover {
+    background: #0484c9;
+    text-decoration: none;
+    cursor: pointer;
+    color: #fff;
+}
+
+#login-btns button:active {
+    background: #1c98db;
+    text-decoration: none;
+    cursor: pointer;
+    color: #fff;
+}
+
+#profile-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    display: none;
+}
+
+#profile-card {
+    width: 60%;
+    height: 26%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#profile-pic {
+    width: 12vw;
+    height: 11vw;
+    background: #2d232f;
+    border-radius: 100%;
+    border: 2px solid #3c3d3f;
+    background: url("http://www.dogbreedanswers.com/wp-content/uploads/2014/08/beagle-side-profile.jpg");
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#profile-info {
+    width: 70%;
+    height: 100%;
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.profile-section {
+    width: 100%;
+    height: 46%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#profile-user {
+    font-size: 28pt;
+}
+
+#edit-profile {
+    font-size: 15pt;
+    width: 150px;
+    background: none;
+    border: 1px solid #aaa;
+    height: 35px;
+    border-radius: 5px;
+}
+
+#edit-profile:hover {
+    cursor: pointer;
+}
+
+#full-name {
+    width: 100%;
+    height: 100%;
+    font-size: 20pt;
+}
+
+#history {
+    width: 100%;
+    height: 65%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#edit-profile-form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    display: none;
+}
+
+
+#profile-form {
+    
+    width: 75%;
+    height: 50%;
+    display: flex;
+    flex-direction: column; 
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#profile-title {
+    font-size: 30pt;
+    margin-bottom: 60px;
+    width: 100%;
+}
+
+.edit-profile-section {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.profile-label {
+    width: 45%;
+    text-align: right;
+    font-size: 15pt;
+}
+
+.edit-profile-input {
+    width: 50%;
+    height: 20px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #aaa;
+    font-size: 13pt;
+}
+
+#save-profile {
+    margin-top: 70px;
+    -webkit-border-radius: 8;
+    -moz-border-radius: 8;
+    border-radius: 8px;
+    font-family: Arial;
+    color: #3d3c3e;
+    font-size: 20px;
+    padding: 10px 20px 10px 20px;
+    border: solid #31749e 2px;
+    text-decoration: none;
+    width: 200px;
+    background: none;
+}
+
+#save-profile:hover {
+    background: #31749e;
+    color: #ddd;
+    cursor: pointer;
+}
+
+#save-profile:active {
+    background: #3093d1;
+}

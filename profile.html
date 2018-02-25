@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>APP NAME</title>
+        <link rel="stylesheet" type="text/css" href="style/main.css"/>
+        <link rel="stylesheet" type="text/css" href="style/form.css"/>
+        <link rel="stylesheet" type="text/css" href="style/profile.css"/>
+    </head>
+    <body>
+        <div id="container">
+            <header>
+                <div id="header-container">
+                    <div id="title-container">
+                        <a id="header-logo" href="index.html"></a>
+                        <a id="header-title" href="index.html"><span class="highlight">EVENT</span>ALICIOUS</a>
+                    </div>
+                    <div id="nav-button-container">
+                        <div>LOG OUT</div>
+                        <a id="logout" class="nav-btn" href=""></a>
+                    </div>
+                </div>
+            </header>
+            <div id="content-container">
+                <div id="login-form-container">
+                    <form id="login-form" class="form">
+                        <div id="login-title" class="form-element">Login to your account</div>
+                        <div id="login-container" class="input-container">
+                            <div id="login-icon" class="icon"><span></span></div>
+                            <input id="username" class="form-element" type="text" placeholder="Username" required/>
+                        </div>
+                        <div id="password-container" class="input-container">
+                            <div id="password-icon" class="icon"><span></span></div>
+                            <input id="password" class="form-element" type="password" placeholder="Password" required/>
+                        </div>
+                        <div id="login-btns">
+                            <button id="login" class="form-element">LOG IN</button>
+                            <button id="register" class="form-element">REGISTER</button>
+                        </div>
+                    </form>
+                </div>
+                <div id="profile-container">
+                    <div id="profile-card">
+                        <div id="profile-pic">
+                        </div>
+                        <div id="profile-info">
+                            <div class="profile-section">
+                                <div id="profile-user">username000</div>
+                                <button id="edit-profile">Edit profile</button>
+                            </div>
+                            <div class="profile-section">
+                                <div id="full-name">Bob Jhonson</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="history">
+                        
+                    </div>
+                </div>
+                <div id="edit-profile-form">
+                    <form id="profile-form">
+                        <div id="profile-title">Edit Profile</div>
+                        <div class="edit-profile-section">
+                            <div class="profile-label">Username</div>
+                            <input class="edit-profile-input" id="profile-username" type="text" />
+                        </div>
+                        <div class="edit-profile-section">
+                            <div class="profile-label">Password</div>
+                            <input class="edit-profile-input" id="profile-password" type="password" />
+                        </div>
+                        <div class="edit-profile-section">
+                            <div class="profile-label">Name</div>
+                            <input class="edit-profile-input" id="profile-fullname" type="text" />
+                        </div>
+                        <div class="edit-profile-section">
+                            <div class="profile-label">Profile picture</div>
+                            <input class="edit-profile-input" id="profile-picture" type="text" placeholder="Enter image url" />
+                        </div>
+                        <button id="save-profile">Save</button>
+                    </form>
+                </div>
+            </div>
+            <div id="footer">
+                <a id="credits" class="links" href="credits.html">CREDITS</a>
+                <div id="copyright">&copy; 2018 SKG</div>
+            </div>
+        </div>
+        <script src="js/api.js"></script>
+        <script src="js/profile.js"></script>
+    </body>
+</html>

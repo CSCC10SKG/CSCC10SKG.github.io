@@ -5,7 +5,7 @@ html {
 
 * {
     /** cool animation transitions **/
-    transition-duration: 0.2s;
+    transition-duration: 0.3s;
 }
 
 body {
@@ -84,6 +84,7 @@ header a {
     height: 25px;
     background: #777;
     margin-left: 20px;
+    padding: 2px;
 }
 
 #content-container {
@@ -269,19 +270,62 @@ header a {
     align-items: center;
 }
 
+#profile-container {
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+}
+
+#profile-name {
+    text-align: right;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-left: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-bottom: 1px solid #aaa;
+    border-left: 1px solid #aaa;
+    border-top: 1px solid #aaa;
+    padding: 2px;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: none;
+}
+
 #profile {
     background: url("../media/profile.png");
-    background-size: 100% 100%;
+    background-size: 90% 90%;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0;
+    margin-left: 20px;
 }
+
+#profile-container:hover > #profile-name { 
+    display: block;
+}
+
+#profile-container:hover > #profile { 
+    margin: 0;
+    margin-left: 0px;
+    border: 1px solid #aaa;
+}
+
 
 #favourite {
     background: url("../media/fav.png");
-    background-size: 100% 100%;
+    background-size: 90% 90%;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 #filter {
     background: url("../media/filter.png");
-    background-size: 100% 100%;
+    background-size: 90% 90%;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .links {

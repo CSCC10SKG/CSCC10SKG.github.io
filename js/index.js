@@ -112,5 +112,17 @@ document.getElementById("promotions-tab").addEventListener("click", function(){
     this.classList.remove("hide-tab");
     document.getElementById("promotions-container").style.display = "block";
     document.getElementById("events-container").style.display = "none";
-});  
+}); 
+
+(function(){
+    
+    window.onload = function() {
+        var user = api.getUserName();
+        console.log(user);
+        if (user != "") {
+            document.getElementById("profile-name").innerHTML = user;
+        }
+    }
+    
+}());
 
