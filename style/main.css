@@ -147,6 +147,7 @@ header a {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    border-top: 1px solid #aaa;
 }
 
 #tab-items {
@@ -286,4 +287,6 @@ header a {
 
 .highlight {
     font-weight: bold;
+    padding: 0;
+    margin: 0;
 }
