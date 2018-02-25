@@ -16,6 +16,7 @@ body {
     margin: auto;
     height: 100vh;
     overflow: auto;
+    background: #fdfdfd;
 }
 
 /* box shadow generated with https://www.cssmatic.com/box-shadow */
@@ -36,11 +37,12 @@ header {
     min-width: 1150px;
     height: 10%;
     background: none;
-    -webkit-box-shadow: 0px 1px 4px -1px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 1px 4px -1px rgba(0,0,0,0.75);
-    box-shadow: 0px 1px 4px -1px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 1px 2px -1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 1px 2px -1px rgba(0,0,0,0.75);
+    box-shadow: 0px 1px 2px -1px rgba(0,0,0,0.75);
     display: flex;
     justify-content: center;
+    background: #fff;
 }
 
 #header-container {
@@ -121,10 +123,11 @@ header a {
 #map-search {
     margin: 0;
     padding: 0;
-    width: 95%;
+    width: 100%;
     height: 100%;
     border: none;
     border-bottom: 1px solid #aaa;
+    background: none;
 }
 
 #search {
@@ -278,6 +281,11 @@ header a {
 
 #favourite {
     background: url("../media/fav.png");
+    background-size: 100% 100%;
+}
+
+#filter {
+    background: url("../media/filter.png");
     background-size: 100% 100%;
 }
 
