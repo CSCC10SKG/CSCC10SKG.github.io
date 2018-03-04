@@ -92,6 +92,35 @@ function initMap() {
     }
 }
 
+
+
+// jQuery(function($) {
+//   $('#my-fast-map a').on('click', function(e) {
+//     e.preventDefault();
+//         map = $(this).parent();
+    
+//     iframe_src = map.data('iframe-src');
+//     iframe_width = map.data('iframe-width');
+//     iframe_height = map.data('iframe-height');
+
+//     map.html('<iframe src="' + iframe_src + '" width="' + iframe_width + '" height="' + iframe_height + '" allowfullscreen></iframe>');
+
+//     return false;
+//   });
+// });
+
+document.getElementById("my-fast-map").addEventListener('click', function(e){
+    e.preventDefault();
+    var map = this;
+    var iframe_src = map.getAttribute('iframe-src');
+    console.log(iframe_src);
+    var iframe_width = map.getAttribute('iframe-width');
+    console.log(iframe_width);
+    var iframe_height = map.getAttribute('iframe-height');
+    console.log(iframe_height);
+    map.innerHTML = '<iframe src="' + iframe_src + '" width="' + iframe_width + '" height="' + iframe_height + '" allowfullscreen></iframe>';
+});
+
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
     infoWindow.setContent(browserHasGeolocation ?
