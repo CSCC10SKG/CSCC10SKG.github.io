@@ -239,10 +239,13 @@ header a {
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #aaa;
+    vertical-align: middle;
 }
 
 .event-title {
-    margin-left: 10px;   
+    margin-left: 10px; 
+    color: #313D57;
+    vertical-align: middle;
 }
 
 .event-location {
