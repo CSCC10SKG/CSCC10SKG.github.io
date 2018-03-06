@@ -271,3 +271,58 @@
 #save-profile:active {
     background: #3093d1;
 }
+
+/* mobile CSS */
+
+@media (max-width:800px) {
+    #content-container {
+        width: 100%;
+    }
+    
+    #login-form {
+        width: 100%;
+    }
+    
+    #profile-card {
+        width: 98%;
+        border-bottom: 1px solid #aaa;
+    }
+    
+    #profile-user {
+        font-size: 20pt;
+    }
+    
+    #edit-profile {
+        font-size: 9pt;
+        width: 100px;
+        background: none;
+        border: 1px solid #aaa;
+        height: 30px;
+        border-radius: 5px;
+    }
+
+    #edit-profile:hover {
+        cursor: pointer;
+    }
+
+    #full-name {
+        width: 100%;
+        height: 100%;
+        font-size: 16pt;
+    }
+    
+    #profile-pic {
+        width: 35vw;
+        height: 25vw;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    #profile-info {
+        width: 90%;
+        border-left: 20px solid #fff;
+        margin: 0 !important;
+        padding: 0 !important;
+        margin-left 10px !important;
+    }
+}

@@ -4,52 +4,12 @@
         <meta charset="utf-8"/>
         <title>EVENTALICIOUS</title>
         <link rel="stylesheet" type="text/css" href="style/main.css"/>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-            crossorigin="anonymous">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="d-flex flex-row">
-                <a class="navbar-brand" id="header-logo" href="index.html"></a>
-                <a class="navbar-brand" id="header-title" href="index.html"><span class="highlight">EVENT</span>ALICIOUS</a>
-            </div>
-
-            <!-- <div class="d-flex flex-row-reverse"> -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a id="filter" class="nav-btn" href=""></a>
-                </li>
-                <li class="nav-item">
-                    <a id="favourite" class="nav-btn" href=""></a>
-                </li>
-                    <div id="profile-container">
-                        <div id="profile-name">LOGIN</div>
-                        <a id="profile" class="nav-btn" href="profile.html"></a>
-                    </div>
-                <li class="nav-item">
-                    <a id="add-event" class="nav-btn" href="add.html">+</a>
-                </li>
-                </div>
-                </ul>
-            </div>
-
-            <!-- </div> -->
-        </nav>
         <div id="container">
-            <!-- <header>
-                <div id="header-container">
+            <header>
+                <!-- <div id="header-container">
                     <div id="title-container">
                         <a id="header-logo" href="index.html"></a>
                         <a id="header-title" href="index.html"><span class="highlight">EVENT</span>ALICIOUS</a>
@@ -63,9 +23,32 @@
                         </div>
                         <a id="add-event" class="nav-btn" href="add.html">+</a>
                     </div>
+                </div> -->
+                <div id="header-container">
+                    <div id="title-container">
+                        <a id="header-logo" href="index.html"></a>
+                        <a id="header-title" href="index.html"><span class="highlight">EVENT</span>ALICIOUS</a>
+                    </div>
+                    <div id="nav-button-container" class="desktop">
+                        <a id="filter" class="nav-btn" href=""></a>
+                        <a id="favourite" class="nav-btn" href=""></a>
+                        <div id="profile-container">
+                            <div id="profile-name">LOGIN</div>
+                            <a id="profile" class="nav-btn" href="profile.html"></a>
+                        </div>
+                    </div>
+                    
+                    <div id="nav-button-container" class="mobile">
+                        <div id="nav-button" class="hide-items nav-btn"></div>
+                    </div>
                 </div>
-            </header> -->
+            </header>
             <div id="content-container">
+                <div id="nav-items-container">
+                    <a id="filter" class="mob-nav-item" href=""> Filter</a>
+                    <a id="favourite" class="mob-nav-item" href=""> Favorites</a>
+                    <a id="profile" class="mob-nav-item" href="profile.html"> Profile</a>
+                </div>
                 <div id="map-container" >
                     <div id="search-container">
                         <input id="map-search" class="controls" type="text" placeholder="Search Places">
@@ -93,6 +76,14 @@
                             <div class="event-location">Fairmont Royal York</div>
                         </div>
                         <div id="event3" class="event">
+                            <div class="event-title">After Hours Stand Up Comedy</div>
+                            <div class="event-location">Comedy Bar</div>
+                        </div>
+                        <div id="event4" class="event">
+                            <div class="event-title">After Hours Stand Up Comedy</div>
+                            <div class="event-location">Comedy Bar</div>
+                        </div>
+                        <div id="event5" class="event">
                             <div class="event-title">After Hours Stand Up Comedy</div>
                             <div class="event-location">Comedy Bar</div>
                         </div>

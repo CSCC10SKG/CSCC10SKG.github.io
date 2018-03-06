@@ -122,6 +122,19 @@ document.getElementById("promotions-tab").addEventListener("click", function(){
         if (user != "") {
             document.getElementById("profile-name").innerHTML = user;
         }
+        
+        document.getElementById("nav-button").addEventListener("click", function(){
+            var cl = this.classList;
+            console.log(cl);
+            if (cl.length > 1) {
+                this.classList.remove("hide-items");
+                document.getElementById("nav-items-container").style.display = "flex";
+            }
+            else {
+                this.classList.add("hide-items");
+                document.getElementById("nav-items-container").style.display = "none"; 
+            }
+        });
     }
     
 }());
