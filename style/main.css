@@ -377,6 +377,8 @@ header a {
     background-position: center; 
     display: flex;
     flex-direction: column;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
 #nav-button:hover {
@@ -385,9 +387,9 @@ header a {
 
 .mob-nav-item {
     background: none !important;
-    color: #3b3c3d;
-    width: 25%;
-    height: 30px;
+    color: #fff;
+    width: 100%;
+    height: 90%;
     margin: 0 !important;
     padding: 0 !important;
     font-size: 10pt;
@@ -395,8 +397,8 @@ header a {
     text-decoration: none;
     line-height: 30px;
     vertical-align: middle;
-    border: 1px solid #aaa;
-    border-radius: 5px;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
 }
 
 .mob-nav-item:active {
@@ -411,15 +413,26 @@ header a {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    margin-top: 5px;
+    align-items: center;
+    margin-top: 0px;
     border-bottom: 1px solid #aaa;
-    padding-bottom: 5px;
+    background: #333138;
+}
+
+.tint-button {
+    
+    height: 85%;
+    width: 100%;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex;
+    align-items: center;
 }
 
 /* MOBILE CSS */
 @media (max-width:800px) {
     #content-container {
-        width: 98%;
+        width: 100%;
         /*min-width: 1150px;*/
         height: 85%;
         display: flex;
@@ -450,6 +463,7 @@ header a {
         height: 54%;
         border-bottom: 1px solid #aaa;
         padding-bottom: 0.5%;
+        min-height: 0;
     }
     
     #search-container {
@@ -459,6 +473,7 @@ header a {
     #side-container {
         width: 100%;
         height: 45%;
+        min-height: 0;
     }
     
     #footer {
@@ -488,6 +503,10 @@ header a {
     
     #nav-items-container {
         display: none;
+    }
+    
+    #favourite {
+        background: #45424D !important;
     }
 }
 
