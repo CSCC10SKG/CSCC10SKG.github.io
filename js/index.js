@@ -116,17 +116,20 @@ document.getElementById("promotions-tab").addEventListener("click", function(){
 
 (function(){
     
+    document.getElementById("nav-items-container").style.display = "none";
+    
     window.onload = function() {
         var user = api.getUserName();
         console.log(user);
         if (user != "") {
             document.getElementById("profile-name").innerHTML = user;
-        }
+        } 
         
         document.getElementById("nav-button").addEventListener("click", function(){
             var cl = this.classList;
             console.log(cl);
             if (cl.length > 1) {
+                console.log("mobile on");
                 this.classList.remove("hide-items");
                 document.getElementById("nav-items-container").style.display = "flex";
             }
