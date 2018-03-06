@@ -168,7 +168,7 @@ header a {
 #tab-items {
     width: 100%;
     height: 5%;
-    min-height: 30px;
+    min-height: 38px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -447,8 +447,9 @@ header a {
     
     #map-container {
         width: 100%;
-        height: 53.5%;
-        border-bottom: 2px solid #aaa;
+        height: 54%;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5%;
     }
     
     #search-container {
@@ -457,7 +458,7 @@ header a {
     
     #side-container {
         width: 100%;
-        height: 46%;
+        height: 45%;
     }
     
     #footer {
