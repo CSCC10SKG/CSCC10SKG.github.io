@@ -208,9 +208,66 @@ header a {
 #live-feed {
     width: 100%;
     height: 51%;
-    overflow-y: scroll;
     border-top: 1px solid #aaa;
     margin-top: 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#feed {
+    width: 100%;
+    height: 85%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#feed-input-container {
+    width: 100%;
+    height: 13%;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+
+#feed-input {
+    width: 95%;
+    height: 98%;
+    border: 1px solid #aaa;
+    overflow-x: auto;
+    margin: 0;
+    padding: 0;
+    line-height: 100%;
+    vertical-align: middle;
+}
+
+#feed-enter {
+    width: 50px;
+    height: 48px;
+    background: url("../media/feed-enter.png");
+    background-size: 80% 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 2px solid #aaa;
+}
+
+#feed-enter:hover {
+    cursor: pointer;
+}
+
+.feed-item {
+    width: 98%;
+    min-height: 20px;
+    padding-left: 5px;
+    border-bottom: 1px solid #aaa;
+    padding-bottom: 10px;
+}
+
+.feed-item-name {
+    font-weight: bold;
+    padding-right: 5px;
 }
 
 
@@ -626,6 +683,18 @@ header a {
 
     #event-description {
         font-size: 8pt;
+    }
+    
+    #feed-input {
+        height: 28.5px;
+        width: 90%;
+        border-left: none;
+        border-right: none;
+    }
+    
+    #feed-enter {
+        width: 30px;
+        height: 30px;
     }
 }
 

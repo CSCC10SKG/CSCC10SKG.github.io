@@ -179,13 +179,62 @@ function updateEventLoc() {
                 document.getElementById("event-pic").style.backgroundPosition = "center";
                 document.getElementById("event-pic").style.backgroundRepeat = "no-repeat";
                 document.getElementById("event-description").innerHTML = desc;
+                document.getElementById("feed").innerHTML = "";
+                var interval = setInterval(function(){setFeed();}, Math.floor(Math.random() * 3000) + 300);
+                document.getElementById("feed").scrollTop = document.getElementById("feed").scrollHeight;
                 document.getElementById("event-link").addEventListener("click", function(){
+                    clearInterval(interval);
                     document.getElementById("map-container").style.display = "flex";
                     document.getElementById("side-container").style.display = "flex";
                     document.getElementById("event-details-container").style.display = "none";
                 });
             });
         });
+        document.getElementById("feed-enter").addEventListener("click", function(){
+           postFeed(user);
+        });
+        document.getElementById("feed-input").addEventListener("keypress", function(e){
+            var key = e.which || e.keyCode;
+            if (key === 13) {
+                postFeed(user);
+            }
+        });
+    }
+    
+    function setFeed(counter=0) {
+        var randomMsg = api.getRandomFeedItem();
+        var div = document.createElement('div');
+        div.classList.add("feed-item");
+        div.innerHTML = `<span class="feed-item-name"> ${randomMsg[0]} : </span> ${randomMsg[1]}`;
+        document.getElementById("feed").appendChild(div);
+        document.getElementById("feed").scrollTop = document.getElementById("feed").scrollHeight;
+    }
+    
+    function setUserMsg(user, msg) {
+        var div = document.createElement('div');
+        div.classList.add("feed-item");
+        div.innerHTML = `<span class="feed-item-name"> ${user} : </span> ${msg}`;
+        document.getElementById("feed").appendChild(div);
+    }
+    
+    function setErrorFeed(error) {
+        var div = document.createElement('div');
+        div.classList.add("feed-item");
+        div.style.color = "red";
+        div.innerHTML = `<span class="feed-item-name"> ERROR : </span> ${error}`;
+        document.getElementById("feed").appendChild(div);
+    }
+    
+    function postFeed(user) {
+        if (user != "") {
+            var msg = document.getElementById("feed-input").value;
+            setUserMsg(user, msg);
+            document.getElementById("feed-input").value = "";
+        }
+        else {
+            setErrorFeed("Login to post in the feed.");
+        }
+        document.getElementById("feed").scrollTop = document.getElementById("feed").scrollHeight;
     }
     
 }());

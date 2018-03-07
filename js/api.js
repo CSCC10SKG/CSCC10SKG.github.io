@@ -21,6 +21,10 @@ var api = (function(){
         localStorage.setItem("currentUser", currentUser);
     }
     
+    var names = ["Basilia","Mariela","Claudia","America","Roxanne","Melaine","Roxanna","Rashida","Silva","Lavone","Angila","Kum","Marin","Queenie","Wonda","Bradley","Nikole","Amber","Mittie","Berry","Waneta","Janene","Carole","Alonzo","Ashli","Mike","Willodean","Tiara","Domitila","Shameka","Roselle","Geraldo","Bunny","Celsa","Cear","Leonel","Jacinda","Rima","Victoria","Leontine","Elinore","Karyn","Jasper","Marvel","Mariam","Kamala","Vinita","Shaun","Jaime","Rigoberto"];
+    
+    var msgs = ["The impulse composes the chunky stage.","The excellent middle reports the doubt.","The hope renders the brass.","The common voice maintains the crush.","The common voice maintains the crush.","The common voice maintains the crush.","The government interacts the entertaining print.","The governmentinteracts the entertaining print.","The seat consolidates the produce.","The seat consolidates the produce.","The impulse composes the chunkystage.","The impulse composes the chunky stage.","The year debates the two market.","The business elects the low position.","The reward defers thelevel.","The market submits the fast bread.","The ruthless comparison segments the weather.","The wretched knowledge advises the force.","Thecompetition delegates the well-off color.","The owner engineers the humdrum expansion.","The big breath authorizes the ink.","The minor mindactivates the rain.","The dapper surprise searchs the attic.","The request arranges the cloth.","The system litigates the design.","The space donkeysthe young protest.","The walk discusss the curious silk.","The current acts the connection.","The breezy business examines the destruction.","Theexpansion compares the attack.","The outrageous push standardizes the note.","The abaft guide adjusts the twist.","The rain furnishs thesoggy trouble.","The drink produces the testy road.","The law motivates the workable event.","The wretched knowledge advises the force.","Theompetition delegates the well-off color.","The owner engineers the humdrum expansion."];
+    
     module.isLoggedIn = function() {
         return loggedin;
     }
@@ -70,6 +74,13 @@ var api = (function(){
     
     module.getUserInfo = function(user) {
         return items[user];
+    }
+    
+    module.getRandomFeedItem = function() {
+        var user = names[Math.floor(Math.random() * names.length)];
+        var msg = msgs[Math.floor(Math.random() * msgs.length)];
+        
+        return [user, msg];
     }
 
     return module;
