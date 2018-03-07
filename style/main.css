@@ -117,6 +117,103 @@ header a {
     align-content: center;
 }
 
+#side-container {
+    width: 38%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#event-details-container {
+    width: 100%;
+    height: 95%;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#event-details {
+    width: 100%;
+    height: 48%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#event-pic-container {
+    height: 100%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#event-pic {
+    width: 100%;
+    height: 85%;
+    background: #222;
+    border-bottom: 1px solid #aaa;
+    padding-bottom: 2px;
+}
+
+#event-link {
+    width: 99%;
+    height: 40px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0px;
+    font-family: Arial;
+    color: #3c3d3f;
+    font-size: 20px;
+    border: solid #3D354F 2px;
+    text-decoration: none;
+    text-align: center;
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+#event-link:hover {
+    background: #5E507D;
+    text-decoration: none;
+    color: #eee;
+}
+
+#event-info {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+}
+
+#event-title {
+    width: 96%;
+    height: 15%;
+    text-decoration: none;
+    font-size: 18pt;
+    color: #3c3d3f;
+    border-bottom: 1px solid #aaa;
+}
+
+#event-description {
+    width: 96%;
+    height: 82%;
+    font-size: 12pt;
+    overflow-y: auto;
+}
+
+#live-feed {
+    width: 100%;
+    height: 51%;
+    overflow-y: scroll;
+    border-top: 1px solid #aaa;
+    margin-top: 2px;
+}
+
+
 #map {
     width: 100%;
     height: 95%;
@@ -155,14 +252,6 @@ header a {
     border: none;
     border-bottom: 1px solid #aaa;
     border-left: 1px solid #aaa;
-}
-
-#side-container {
-    width: 38%;
-    height: 90%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 }
 
 #tab-items {
@@ -508,8 +597,35 @@ header a {
         display: none;
     }
     
+    #nav-button-container {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: row !important;
+        justify-content: flex-end !important;
+    }
+    
+    #mobile-profile-name{
+        display: block !important;
+        font-size: 8pt;
+        width: 75px;
+        height: 10px;
+        padding: 2px;
+        border: none;
+        text-align: right;
+    }
+    
     #favourite {
         background: #45424D !important;
+    }
+    
+    #event-title {
+        font-size: 10pt;
+        height: 40px;
+    }
+
+    #event-description {
+        font-size: 8pt;
     }
 }
 

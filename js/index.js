@@ -1,5 +1,5 @@
 // script generated from google API
-var map, infoWindow;
+var map, infoWindow, geocoder, currentLoc;
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: -34.397, lng: 150.644},
@@ -7,6 +7,7 @@ function initMap() {
         gestureHandling: 'greedy'
     });
     
+    geocoder = new google.maps.Geocoder();
     var input = document.getElementById('map-search');
     var searchBox = new google.maps.places.SearchBox(input);
 
@@ -53,6 +54,9 @@ function initMap() {
                 title: place.name,
                 position: place.geometry.location
             }));
+            console.log(place);
+            currentLoc = place.formatted_address.split(",")[0];
+            updateEventLoc();
 
             if (place.geometry.viewport) {
                 // Only geocodes have viewport.
@@ -81,6 +85,7 @@ function initMap() {
               title: 'Me!'
             });
             map.setCenter(pos);
+            getLocation(pos.lat, pos.lng);
             
         }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
@@ -90,6 +95,18 @@ function initMap() {
         // Browser doesn't support Geolocation
         handleLocationError(false, infoWindow, map.getCenter());
     }
+}
+
+function getLocation(lat, lng) {
+    var latlng = new google.maps.LatLng(lat, lng);
+    geocoder.geocode( { 'location': latlng}, function(results, status) {
+        if (status == 'OK') {
+            currentLoc = results[0].formatted_address.split(",")[0];
+            updateEventLoc();
+        } else {
+            return "unknow Location";
+        }
+    });
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -114,6 +131,14 @@ document.getElementById("promotions-tab").addEventListener("click", function(){
     document.getElementById("events-container").style.display = "none";
 }); 
 
+function updateEventLoc() {
+    var events = document.querySelectorAll(".event");
+    events.forEach(function(e){
+        var id = e.id;
+        e.childNodes[3].innerHTML = currentLoc;
+    });
+}
+
 (function(){
     
     document.getElementById("nav-items-container").style.display = "none";
@@ -122,12 +147,12 @@ document.getElementById("promotions-tab").addEventListener("click", function(){
         var user = api.getUserName();
         console.log(user);
         if (user != "") {
-            document.getElementById("profile-name").innerHTML = user;
+            document.getElementById("profile-name").innerHTML = user.toUpperCase();
+            document.getElementById("mobile-profile-name").innerHTML = user.toUpperCase();
         } 
         
         document.getElementById("nav-button").addEventListener("click", function(){
             var cl = this.classList;
-            console.log(cl);
             if (cl.length > 1) {
                 console.log("mobile on");
                 this.classList.remove("hide-items");
@@ -137,6 +162,29 @@ document.getElementById("promotions-tab").addEventListener("click", function(){
                 this.classList.add("hide-items");
                 document.getElementById("nav-items-container").style.display = "none"; 
             }
+        });
+        
+        var events = document.querySelectorAll(".event");
+        events.forEach(function(e){
+            var id = e.id;
+            e.addEventListener("click", function(){
+                var title = this.childNodes[1].innerHTML;
+                var desc = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+                var loc = currentLoc;
+                document.getElementById("map-container").style.display = "none";
+                document.getElementById("side-container").style.display = "none";
+                document.getElementById("event-details-container").style.display = "flex";
+                document.getElementById("event-title").innerHTML = title + "   |   " + loc;
+                document.getElementById("event-pic").style.background = "url(https://lorempixel.com/400/200/)";
+                document.getElementById("event-pic").style.backgroundPosition = "center";
+                document.getElementById("event-pic").style.backgroundRepeat = "no-repeat";
+                document.getElementById("event-description").innerHTML = desc;
+                document.getElementById("event-link").addEventListener("click", function(){
+                    document.getElementById("map-container").style.display = "flex";
+                    document.getElementById("side-container").style.display = "flex";
+                    document.getElementById("event-details-container").style.display = "none";
+                });
+            });
         });
     }
     
