@@ -180,7 +180,7 @@ function updateEventLoc() {
                 document.getElementById("event-pic").style.backgroundRepeat = "no-repeat";
                 document.getElementById("event-description").innerHTML = desc;
                 document.getElementById("feed").innerHTML = "";
-                var interval = setInterval(function(){setFeed();}, Math.floor(Math.random() * 3000) + 300);
+                var interval = setInterval(function(){setFeed();}, 2500);
                 document.getElementById("feed").scrollTop = document.getElementById("feed").scrollHeight;
                 document.getElementById("event-link").addEventListener("click", function(){
                     clearInterval(interval);
