@@ -107,6 +107,7 @@
 }
 
 #login-btns button:hover {
+    transition-duration: 0.5s;
     background: #0484c9;
     text-decoration: none;
     cursor: pointer;
@@ -180,6 +181,7 @@
 }
 
 .profile-btn:hover {
+    transition-duration: 0.5s;
     cursor: pointer;
     background: #ddd;
 }
@@ -268,6 +270,7 @@
 }
 
 .edit-btn:hover {
+    transition-duration: 0.5s;
     background: #31749e;
     color: #ddd;
     cursor: pointer;
@@ -374,6 +377,7 @@
     }
 
     #edit-profile:hover {
+        transition-duration: 0.5s;
         cursor: pointer;
     }
 
@@ -395,6 +399,6 @@
         border-left: 20px solid #fff;
         margin: 0 !important;
         padding: 0 !important;
-        margin-left 10px !important;
+        margin-left: 10px !important;
     }
 }

@@ -4,11 +4,6 @@ html {
     overflow-x: auto;
 }
 
-* {
-    /** cool animation transitions **/
-    transition-duration: 0.3s;
-}
-
 body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 10pt;
@@ -85,6 +80,7 @@ header a {
 }
 
 #header-title:hover {
+    transition-duration: 0.5s;
     text-decoration: none;
     color: #576B8F;
 }
@@ -175,6 +171,7 @@ header a {
 }
 
 #event-link:hover {
+    transition-duration: 0.5s;
     background: #5E507D;
     text-decoration: none;
     color: #eee;
@@ -265,6 +262,7 @@ header a {
 }
 
 #feed-enter:hover {
+    transition-duration: 0.5s;
     cursor: pointer;
 }
 
@@ -350,6 +348,7 @@ header a {
 }
 
 .tab:hover {
+    transition-duration: 0.5s;
     background: #666;
     cursor: pointer;
     color: #fff;
@@ -415,6 +414,7 @@ header a {
 }
 
 .event:hover {
+    transition-duration: 0.5s;
     background-color: #ddd;
     cursor:pointer;
 }
@@ -498,10 +498,12 @@ header a {
 }
 
 #profile-container:hover > #profile-name { 
+    transition-duration: 0.5s;
     display: block;
 }
 
 #profile-container:hover > #profile { 
+    transition-duration: 0.5s;
     margin: 0;
     margin-left: 0px;
     border: 1px solid #aaa;
@@ -559,6 +561,7 @@ header a {
 }
 
 #nav-button:hover {
+    transition-duration: 0.5s;
     cursor: pointer;
 }
 
