@@ -16,6 +16,7 @@ function initMap() {
     // Bias the SearchBox results towards current map's viewport.
     map.addListener('bounds_changed', function() {
       searchBox.setBounds(map.getBounds());
+
     });
     
     markers = [];
@@ -56,6 +57,12 @@ function initMap() {
                 position: place.geometry.location
             }));
             currentLoc = place.formatted_address.split(",")[0];
+            if (place.geometry.bounds) {
+                currentCords = [place.geometry.bounds.f.b, place.geometry.bounds.b.b];
+            }
+            else {
+                currentCords = [place.geometry.viewport.f.b, place.geometry.viewport.b.b];
+            }
             updateEventLoc();
 
             if (place.geometry.viewport) {
