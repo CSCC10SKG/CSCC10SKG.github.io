@@ -726,3 +726,12 @@ header a {
         font-size: 7pt;
     }
 }
+
+#addevent {
+	border: none;
+    background-size: 37px;
+    background-repeat: no-repeat;
+    background-position:center;
+    padding: 0;
+	background-image: url('../media/add.png');
+}
