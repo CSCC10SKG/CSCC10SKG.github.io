@@ -208,6 +208,22 @@ function updateEventLoc() {
                 postFeed(user);
             }
         });
+		
+		// Only do things when the document is fully loaded
+		var eventadder = document.getElementById("addevent");
+		eventadder.addEventListener('click', function (e) {
+		e.preventDefault();
+		// read from elements
+		var container = document.getElementById("events-container");
+		eventadder.parentNode.removeChild(eventadder);
+		container.innerHTML += `
+						<div id="event5" class="event">
+                            <div class="event-title">Your New Event</div>
+                            <div class="event-location">Comedy Bar</div>
+                        </div>
+						<div id="addevent" class="event"></div>`;
+		refresh();
+		});
     }
     
     function setFeed(counter=0) {
@@ -245,21 +261,5 @@ function updateEventLoc() {
         }
         document.getElementById("feed").scrollTop = document.getElementById("feed").scrollHeight;
     }
-	
-	// Only do things when the document is fully loaded
-	var eventadder = document.getElementById("addevent")
-	eventadder.addEventListener('click', function (e) {
-		e.preventDefault();
-		// read from elements
-		var container = document.getElementById("side-container");
-		eventadder.parentNode.removeChild(eventadder);
-		container.innerHTML += `
-						<div id="event5" class="event">
-                            <div class="event-title">Your New Event</div>
-                            <div class="event-location">Comedy Bar</div>
-                        </div>
-						<div id="addevent" class="event"></div>`;
-		func();
-		})
 }());
 
