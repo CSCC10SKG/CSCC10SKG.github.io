@@ -39,8 +39,8 @@
                 var data = api.register(username, password);
                 loggedIn = true;
                 user = username;
-                data = api.updateProfile(user, user, data.password, "bob", "");
-                loadProfile(data);
+                data = api.updateProfile(user, user, data.password, "", "");
+                loadEditProfile(data);
             });
         });
         
