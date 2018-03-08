@@ -1,5 +1,6 @@
 // script generated from google API
-var map, infoWindow, geocoder, currentLoc;
+var map, infoWindow, geocoder, currentLoc, services, markers;
+var currentCords = [43.6628956, -79.3978451];
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 43.6628956, lng: -79.3978451},
@@ -10,13 +11,14 @@ function initMap() {
     geocoder = new google.maps.Geocoder();
     var input = document.getElementById('map-search');
     var searchBox = new google.maps.places.SearchBox(input);
+    services = new google.maps.places.PlacesService(map);
 
     // Bias the SearchBox results towards current map's viewport.
     map.addListener('bounds_changed', function() {
       searchBox.setBounds(map.getBounds());
     });
     
-    var markers = [];
+    markers = [];
     // Listen for the event fired when the user selects a prediction and retrieve
     // more details for that place.
     searchBox.addListener('places_changed', function() {
@@ -36,7 +38,6 @@ function initMap() {
         var bounds = new google.maps.LatLngBounds();
         places.forEach(function(place) {
             if (!place.geometry) {
-                console.log("Returned place contains no geometry");
                 return;
             }
             var icon = {
@@ -54,7 +55,6 @@ function initMap() {
                 title: place.name,
                 position: place.geometry.location
             }));
-            console.log(place);
             currentLoc = place.formatted_address.split(",")[0];
             updateEventLoc();
 
@@ -85,7 +85,7 @@ function initMap() {
               title: 'Me!'
             });
             map.setCenter(pos);
-            getLocation(pos.lat, pos.lng);
+            getLocation(pos.lat, pos.lng, true);
             
         }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
@@ -97,16 +97,28 @@ function initMap() {
     }
 }
 
-function getLocation(lat, lng) {
+function getLocation(lat, lng, update, callback=null) {
     var latlng = new google.maps.LatLng(lat, lng);
     geocoder.geocode( { 'location': latlng}, function(results, status) {
         if (status == 'OK') {
             currentLoc = results[0].formatted_address.split(",")[0];
-            updateEventLoc();
+            currentCords = [results[0].geometry.bounds.f.b, results[0].geometry.bounds.b.b];
+            if (update) updateEventLoc();
+            if (callback) callback(null, currentLoc);
         } else {
+            if (callback) callback("unknow loc", null);
             return "unknow Location";
         }
     });
+}
+
+function searchLocation(lat, lon, callback) {
+    var request = {
+        location:  new google.maps.LatLng(lat, lon),
+        radius: '10000'
+    };
+    
+    services.nearbySearch(request, callback);
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -114,6 +126,12 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setContent(browserHasGeolocation ?
                           'Error: The Geolocation service failed.' :
                           'Error: Your browser doesn\'t support geolocation.');
+    infoWindow.open(map);
+}
+
+function addInfoBox(infoWindow, pos, message){
+    infoWindow.setPosition(pos);
+    infoWindow.setContent(message);
     infoWindow.open(map);
 }
 
@@ -133,10 +151,87 @@ document.getElementById("promotions-tab").addEventListener("click", function(){
 
 function updateEventLoc() {
     var events = document.querySelectorAll(".event");
-    events.forEach(function(e){
-        var id = e.id;
-        e.childNodes[3].innerHTML = currentLoc;
+    searchLocation(currentCords[0], currentCords[1], function(result, status){
+        if (status == google.maps.places.PlacesServiceStatus.OK) {
+            events.forEach(function(e){
+                var index = Math.floor(Math.random() * result.length);
+                e.childNodes[3].innerHTML = result[index].vicinity;
+                //addInfoBox(new google.maps.InfoWindow, result[index].geometry.location, e.childNodes[1].innerHTML);
+                var icon = {
+                    url: "https://maps.gstatic.com/mapfiles/place_api/icons/geocode-71.png",
+                    size: new google.maps.Size(71, 71),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(17, 34),
+                    scaledSize: new google.maps.Size(25, 25)
+                };
+                var marker = new google.maps.Marker({
+                    map: map,
+                    icon: icon,
+                    title: e.childNodes[1].innerHTML,
+                    position: result[index].geometry.location,
+                    id: e.id
+                });
+                marker.addListener("click", function(){
+                    document.getElementById("event-title").innerHTML = document.querySelectorAll("#"+e.id+" .event-title")[0].innerHTML;
+                    document.getElementById("event-description").innerHTML = document.querySelectorAll("#"+e.id+" .event-desc")[0].innerHTML;
+                    document.getElementById("event-title").innerHTML += " | " + document.querySelectorAll("#"+e.id+" .event-date")[0].innerHTML;
+                    document.getElementById("event-fee").innerHTML = document.querySelectorAll("#"+e.id+" .event-fee")[0].innerHTML;                            
+                    document.getElementById("map-container").style.display = "none";
+                    document.getElementById("side-container").style.display = "none";
+                    document.getElementById("event-details-container").style.display = "flex";
+                    document.getElementById("event-pic").style.background = "url(https://lorempixel.com/400/200/)";
+                    document.getElementById("event-pic").style.backgroundPosition = "center";
+                    document.getElementById("event-pic").style.backgroundRepeat = "no-repeat";
+                    document.getElementById("feed").innerHTML = "";
+                    var interval = setInterval(function(){setFeed();}, 2500);
+                    document.getElementById("feed").scrollTop = document.getElementById("feed").scrollHeight;
+                    document.getElementById("event-link").addEventListener("click", function(){
+                        clearInterval(interval);
+                        document.getElementById("map-container").style.display = "flex";
+                        document.getElementById("side-container").style.display = "flex";
+                        document.getElementById("event-details-container").style.display = "none";
+                    });
+                });
+                markers.push(marker);
+            });  
+        }
     });
+}
+
+function setFeed(counter=0) {
+    var randomMsg = api.getRandomFeedItem();
+    var div = document.createElement('div');
+    div.classList.add("feed-item");
+    div.innerHTML = `<span class="feed-item-name"> ${randomMsg[0]} : </span> ${randomMsg[1]}`;
+    document.getElementById("feed").appendChild(div);
+    document.getElementById("feed").scrollTop = document.getElementById("feed").scrollHeight;
+}
+
+function setUserMsg(user, msg) {
+    var div = document.createElement('div');
+    div.classList.add("feed-item");
+    div.innerHTML = `<span class="feed-item-name"> ${user} : </span> ${msg}`;
+    document.getElementById("feed").appendChild(div);
+}
+
+function setErrorFeed(error) {
+    var div = document.createElement('div');
+    div.classList.add("feed-item");
+    div.style.color = "red";
+    div.innerHTML = `<span class="feed-item-name"> ERROR : </span> ${error}`;
+    document.getElementById("feed").appendChild(div);
+}
+
+function postFeed(user) {
+    if (user != "") {
+        var msg = document.getElementById("feed-input").value;
+        setUserMsg(user, msg);
+        document.getElementById("feed-input").value = "";
+    }
+    else {
+        setErrorFeed("Login to post in the feed.");
+    }
+    document.getElementById("feed").scrollTop = document.getElementById("feed").scrollHeight;
 }
 
 (function(){
@@ -145,7 +240,6 @@ function updateEventLoc() {
     
     window.onload = function() {
         var user = api.getUserName();
-        console.log(user);
         if (user != "") {
             document.getElementById("profile-name").innerHTML = user.toUpperCase();
             document.getElementById("mobile-profile-name").innerHTML = user.toUpperCase();
@@ -154,7 +248,6 @@ function updateEventLoc() {
         document.getElementById("nav-button").addEventListener("click", function(){
             var cl = this.classList;
             if (cl.length > 1) {
-                console.log("mobile on");
                 this.classList.remove("hide-items");
                 document.getElementById("nav-items-container").style.display = "flex";
             }
@@ -222,7 +315,6 @@ function updateEventLoc() {
                     }
                     event.addEventListener("click", function(){
                         var data = api.getEvent(e.id);
-                        console.log(data);
 						document.getElementById("event-title").innerHTML = data.name;
                         document.getElementById("event-description").innerHTML = data.desc;
                         document.getElementById("event-title").innerHTML += " | " + data.date;
@@ -274,42 +366,6 @@ function updateEventLoc() {
 //						<div id="addevent" class="event"></div>`;
 //		refresh();
 //		});
-    }
-    
-    function setFeed(counter=0) {
-        var randomMsg = api.getRandomFeedItem();
-        var div = document.createElement('div');
-        div.classList.add("feed-item");
-        div.innerHTML = `<span class="feed-item-name"> ${randomMsg[0]} : </span> ${randomMsg[1]}`;
-        document.getElementById("feed").appendChild(div);
-        document.getElementById("feed").scrollTop = document.getElementById("feed").scrollHeight;
-    }
-    
-    function setUserMsg(user, msg) {
-        var div = document.createElement('div');
-        div.classList.add("feed-item");
-        div.innerHTML = `<span class="feed-item-name"> ${user} : </span> ${msg}`;
-        document.getElementById("feed").appendChild(div);
-    }
-    
-    function setErrorFeed(error) {
-        var div = document.createElement('div');
-        div.classList.add("feed-item");
-        div.style.color = "red";
-        div.innerHTML = `<span class="feed-item-name"> ERROR : </span> ${error}`;
-        document.getElementById("feed").appendChild(div);
-    }
-    
-    function postFeed(user) {
-        if (user != "") {
-            var msg = document.getElementById("feed-input").value;
-            setUserMsg(user, msg);
-            document.getElementById("feed-input").value = "";
-        }
-        else {
-            setErrorFeed("Login to post in the feed.");
-        }
-        document.getElementById("feed").scrollTop = document.getElementById("feed").scrollHeight;
-    }
+    }    
 }());
 

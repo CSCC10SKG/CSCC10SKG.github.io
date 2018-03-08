@@ -79,7 +79,7 @@
             var fee = document.getElementById("event-fee-input").value;
             var isPromo = document.getElementById("is-promo").checked;
             
-            var data = api.addEvent(guid(), name, desc, date, fee, isPromo);
+            var data = api.addEvent("e"+guid(), name, desc, date, fee, isPromo);
             loadProfile(api.getUserInfo(user));
         });
         
