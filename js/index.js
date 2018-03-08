@@ -170,17 +170,16 @@ function updateEventLoc() {
 				if (e.id != "addevent") {
 					var id = e.id;
 					e.addEventListener("click", function(){
-						var title = this.childNodes[1].innerHTML;
-						var desc = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
-						var loc = currentLoc;
+                        document.getElementById("event-title").innerHTML = document.querySelectorAll("#"+e.id+" .event-title")[0].innerHTML;
+                        document.getElementById("event-description").innerHTML = document.querySelectorAll("#"+e.id+" .event-desc")[0].innerHTML;
+                        document.getElementById("event-title").innerHTML += " | " + document.querySelectorAll("#"+e.id+" .event-date")[0].innerHTML;
+                        document.getElementById("event-fee").innerHTML = document.querySelectorAll("#"+e.id+" .event-fee")[0].innerHTML;                            
 						document.getElementById("map-container").style.display = "none";
 						document.getElementById("side-container").style.display = "none";
 						document.getElementById("event-details-container").style.display = "flex";
-						document.getElementById("event-title").innerHTML = title + "   |   " + loc;
 						document.getElementById("event-pic").style.background = "url(https://lorempixel.com/400/200/)";
 						document.getElementById("event-pic").style.backgroundPosition = "center";
 						document.getElementById("event-pic").style.backgroundRepeat = "no-repeat";
-						document.getElementById("event-description").innerHTML = desc;
 						document.getElementById("feed").innerHTML = "";
 						var interval = setInterval(function(){setFeed();}, 2500);
 						document.getElementById("feed").scrollTop = document.getElementById("feed").scrollHeight;
@@ -192,11 +191,62 @@ function updateEventLoc() {
 						});
 					});
 				}
-        })};
+            });
+            var extraEvents = api.getEvents();
+            if (extraEvents.length > 0) {
+                extraEvents.forEach(function(e){
+                    var event = document.createElement('div');
+                    event.id = e.id;
+                    if (e.isPromo) {
+                        event.classList.add("event");
+                        event.classList.add("promotion");
+                        event.innerHTML = `
+                            <div class="event-title">${e.name}</div>
+                            <div class="event-location"></div>
+                            <span class="event-desc">${e.desc}</span>
+                            <span class="event-fee"></span>
+                            <span class="event-date">${e.date}</span>
+                        `;
+                        document.getElementById("promotions-container").append(event);
+                    }
+                    else {
+                        event.classList.add("event");
+                        event.innerHTML = `
+                            <div class="event-title">${e.name}</div>
+                            <div class="event-location"></div>
+                            <span class="event-desc">${e.desc}</span>
+                            <span class="event-fee">${e.fee}</span>
+                            <span class="event-date">${e.date}</span>
+                        `;
+                        document.getElementById("events-container").append(event);
+                    }
+                    event.addEventListener("click", function(){
+                        var data = api.getEvent(e.id);
+                        console.log(data);
+						document.getElementById("event-title").innerHTML = data.name;
+                        document.getElementById("event-description").innerHTML = data.desc;
+                        document.getElementById("event-title").innerHTML += " | " + data.date;
+                        document.getElementById("event-fee").innerHTML = data.fee;                            
+						document.getElementById("map-container").style.display = "none";
+						document.getElementById("side-container").style.display = "none";
+						document.getElementById("event-details-container").style.display = "flex";
+						document.getElementById("event-pic").style.background = "url(https://lorempixel.com/400/200/)";
+						document.getElementById("event-pic").style.backgroundPosition = "center";
+						document.getElementById("event-pic").style.backgroundRepeat = "no-repeat";
+						document.getElementById("feed").innerHTML = "";
+						var interval = setInterval(function(){setFeed();}, 2500);
+						document.getElementById("feed").scrollTop = document.getElementById("feed").scrollHeight;
+						document.getElementById("event-link").addEventListener("click", function(){
+							clearInterval(interval);
+							document.getElementById("map-container").style.display = "flex";
+							document.getElementById("side-container").style.display = "flex";
+							document.getElementById("event-details-container").style.display = "none";
+						});
+					});
+                });
+            }
+        }
 		
-		var func = function (){
-			console.log("Hello");
-		}
 		refresh();
 		
         document.getElementById("feed-enter").addEventListener("click", function(){
@@ -209,21 +259,21 @@ function updateEventLoc() {
             }
         });
 		
-		// Only do things when the document is fully loaded
-		var eventadder = document.getElementById("addevent");
-		eventadder.addEventListener('click', function (e) {
-		e.preventDefault();
-		// read from elements
-		var container = document.getElementById("events-container");
-		eventadder.parentNode.removeChild(eventadder);
-		container.innerHTML += `
-						<div id="event5" class="event">
-                            <div class="event-title">Your New Event</div>
-                            <div class="event-location">Comedy Bar</div>
-                        </div>
-						<div id="addevent" class="event"></div>`;
-		refresh();
-		});
+//		// Only do things when the document is fully loaded
+//		var eventadder = document.getElementById("addevent");
+//		eventadder.addEventListener('click', function (e) {
+//		e.preventDefault();
+//		// read from elements
+//		var container = document.getElementById("events-container");
+//		eventadder.parentNode.removeChild(eventadder);
+//		container.innerHTML += `
+//						<div id="event5" class="event">
+//                            <div class="event-title">Your New Event</div>
+//                            <div class="event-location">Comedy Bar</div>
+//                        </div>
+//						<div id="addevent" class="event"></div>`;
+//		refresh();
+//		});
     }
     
     function setFeed(counter=0) {

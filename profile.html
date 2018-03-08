@@ -46,11 +46,12 @@
                         </div>
                         <div id="profile-info">
                             <div class="profile-section">
-                                <div id="profile-user">username000</div>
-                                <button id="edit-profile">Edit profile</button>
+                                <div id="profile-user"></div>
+                                <button id="edit-profile" class="profile-btn">Edit profile</button>
+                                <button id="add-event" class="profile-btn">Add Event</button>
                             </div>
                             <div class="profile-section">
-                                <div id="full-name">Bob Jhonson</div>
+                                <div id="full-name"></div>
                             </div>
                         </div>
                     </div>
@@ -63,23 +64,55 @@
                         <div id="profile-title">Edit Profile</div>
                         <div class="edit-profile-section">
                             <div class="profile-label">Username</div>
-                            <input class="edit-profile-input" id="profile-username" type="text" />
+                            <input class="edit-profile-input" id="profile-username" type="text" required/>
                         </div>
                         <div class="edit-profile-section">
                             <div class="profile-label">Password</div>
-                            <input class="edit-profile-input" id="profile-password" type="password" />
+                            <input class="edit-profile-input" id="profile-password" type="password" required/>
                         </div>
                         <div class="edit-profile-section">
                             <div class="profile-label">Name</div>
-                            <input class="edit-profile-input" id="profile-fullname" type="text" />
+                            <input class="edit-profile-input" id="profile-fullname" type="text" required/>
                         </div>
                         <div class="edit-profile-section">
                             <div class="profile-label">Profile picture</div>
-                            <input class="edit-profile-input" id="profile-picture" type="text" placeholder="Enter image url" />
+                            <input class="edit-profile-input" id="profile-picture" type="text" placeholder="Enter image url" required/>
                         </div>
-                        <button id="save-profile">Save</button>
+                        <button id="save-profile" class="edit-btn">Save</button>
                     </form>
                 </div>
+                
+                <div id="edit-event-form">
+                    <form id="event-form">
+                        <div id="event-title">Add Event</div>
+                        <div class="edit-event-section">
+                            <div class="event-label">Event Title</div>
+                            <input class="edit-event-input" id="event-name" type="text" placeholder="Enter event name" required/>
+                        </div>
+                        <div class="edit-event-section">
+                            <div class="event-label">Description</div>
+                            <textarea class="edit-event-input" id="event-desc" type="text" rows="7" required></textarea>
+                        </div>
+                        <div class="edit-event-section">
+                            <div class="event-label">Date</div>
+                            <input class="edit-event-input" id="event-date" type="text" placeholder="Enter event's date" required/>
+                        </div>
+                        <div class="edit-event-section">
+                            <div class="event-label">Event fee</div>
+                            <input class="edit-event-input" id="event-fee-input" type="text" placeholder="Enter event fee" required/>
+                        </div>
+                        <div class="edit-event-section">
+                            <div class="event-label">Is this a promotion</div>
+                            <input class="edit-event-input" type="checkbox" id="is-promo">
+                        </div>
+                        <div class="event-btn-section">
+                            <button id="save-event" class="edit-btn">Save</button>
+                            <button id="cancel-event" class="edit-btn" type="reset">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+                
+                
             </div>
             <div id="footer">
                 <a id="credits" class="links" href="credits.html">CREDITS</a>
