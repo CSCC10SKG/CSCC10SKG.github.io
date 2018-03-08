@@ -33,15 +33,8 @@
         });
         
         document.getElementById("register").addEventListener("click", function(){
-            document.getElementById("login-form").addEventListener("submit", function(e) {
-                var username = document.getElementById("username").value;
-                var password = document.getElementById("password").value;
-                var data = api.register(username, password);
-                loggedIn = true;
-                user = username;
-                data = api.updateProfile(user, user, data.password, "", "");
-                loadEditProfile(data);
-            });
+	    console.log("register");
+	    loadEditProfile({password:"", fullname:"", pic:""});
         });
         
         document.getElementById("logout").addEventListener("click", function(){

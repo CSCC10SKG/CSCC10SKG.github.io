@@ -89,6 +89,7 @@ function initMap() {
             
         }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
+            updateEventLoc();
         });
     } 
     else {
@@ -102,7 +103,13 @@ function getLocation(lat, lng, update, callback=null) {
     geocoder.geocode( { 'location': latlng}, function(results, status) {
         if (status == 'OK') {
             currentLoc = results[0].formatted_address.split(",")[0];
-            currentCords = [results[0].geometry.bounds.f.b, results[0].geometry.bounds.b.b];
+            console.log(results[0]);
+            if (results[0].geometry.bounds) {
+                currentCords = [results[0].geometry.bounds.f.b, results[0].geometry.bounds.b.b];
+            }
+            else {
+                currentCords = [results[0].geometry.viewport.f.b, results[0].geometry.viewport.b.b];
+            }
             if (update) updateEventLoc();
             if (callback) callback(null, currentLoc);
         } else {
