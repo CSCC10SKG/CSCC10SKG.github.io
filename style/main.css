@@ -11,7 +11,7 @@ html {
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px;
+    font-size: 10pt;
     color: #3C3D3F;
     text-align: left;
     margin: auto;
@@ -408,6 +408,7 @@ header a {
 
 .event-location {
     margin-right: 10px;
+    text-align: right;
 }
 
 .event:hover {
