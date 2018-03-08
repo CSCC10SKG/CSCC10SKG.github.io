@@ -14,7 +14,7 @@ function initMap() {
     services = new google.maps.places.PlacesService(map);
 
     // Bias the SearchBox results towards current map's viewport.
-    map.addListener('bounds_changed', function() {
+    map.addListener('idle', function() {
       searchBox.setBounds(map.getBounds());
 
     });
