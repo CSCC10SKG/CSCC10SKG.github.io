@@ -121,7 +121,7 @@
                 div.innerHTML = `
                     <div class="hiv-event-overlay">
                         <div class="his-event-title">${d.title.split("|")[0]}</div>
-                        <div class="his-event-unfav">Remove</div>
+                        <div class="his-event-unfav"></div>
                     </div>
                 `;
                 document.getElementById("favs").append(div);
@@ -135,7 +135,7 @@
                 div.innerHTML = `
                     <div class="hiv-event-overlay">
                         <div class="his-event-title">${d.title.split("|")[0]}</div>
-                        <div class="his-event-unfav">Remove Listing</div>
+                        <div class="his-event-unfav"></div>
                     </div>
                 `;
                 document.getElementById("evts").append(div);

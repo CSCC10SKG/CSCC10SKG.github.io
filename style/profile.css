@@ -143,9 +143,9 @@
     height: 11vw;
     background: #2d232f;
     border-radius: 100%;
-    border: 2px solid #3c3d3f;
+    border: 1px solid #aaa;
     background: url("http://www.dogbreedanswers.com/wp-content/uploads/2014/08/beagle-side-profile.jpg");
-    background-size: 100% auto;
+    background-size: 200% 100%;
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -165,10 +165,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    align-content: center;
 }
 
 #profile-user {
     font-size: 28pt;
+    
 }
 
 .profile-btn {
@@ -213,6 +215,7 @@
     min-height: 40px;
     display: flex;
     flex-direction: row;
+    justify-content: center;
     align-content: center;
     align-items: center;
     line-height: 30px;
@@ -221,22 +224,20 @@
 
 .pr-tab {
     transition-duration: 0.3s;
-    width: 24%;
+    width: 10%;
     padding-left: 0.5%;
     border: none;
-    border-left: 1px solid #aaa;
-    border-bottom: 1px solid #aaa;
     color: #3f3c3c;
     height: 100%;
     line-height: 40px;
     font-size: 12pt;
+    text-align: center;
 }
 
 .pr-tab:hover {
     transition-duration: 0.3s;
     background: #ddd;
     border-bottom: 1px solid #555;
-    border-left: 1px solid #555;
     cursor: pointer;
 }
 
@@ -275,6 +276,7 @@
     background-position: center;
     background-color: #aaa;
     filter: blur(100%);
+    border-radius: 100%;
 }
 
 .hiv-event-overlay {
@@ -286,15 +288,16 @@
     justify-content: space-between;
     align-items: center;
     background-color: rgba(0,0,0,0.5);
+    border-radius: 100%;
 }
 
 .his-event-title {
-    font-weight: bold;
     font-size: 14pt;
+    word-wrap: break-word;
     color: #ccc;
-    width: 100%;
+    width: 80%;
     height: 80%;
-    border-bottom: 2px solid #333;
+    border-bottom: 1px solid #aaa;
     line-height: 160px;
     vertical-align: middle;
     text-align: center;
@@ -306,14 +309,18 @@
     font-size: 14pt;
     color: #ccc;
     opacity: 1;
-    width: 100%;
+    width: 20%;
     height: 20%;
+    min-width: 40px;
     min-height: 40px;
     line-height: 40px;
     vertical-align: middle;
     text-align: center;
-    background: #aa2222;
-    border-bottom: 1px solid #333;
+    background: url("../media/remove.png");
+    background-size: 60% 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: invert(70%);
 }
 
 .his-event-title:hover {
@@ -321,6 +328,7 @@
     cursor: pointer;
     color: #fff;
     font-size: 16pt;
+    
 }
 
 .his-event-unfav:hover {
@@ -328,6 +336,7 @@
     cursor: pointer;
     color: #fff;
     font-size: 16pt;
+    filter: invert(100%);
 }
 
 #edit-profile-form {

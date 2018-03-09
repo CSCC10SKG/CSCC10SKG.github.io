@@ -1,7 +1,16 @@
+@font-face {
+    font-family: 'Myriad';
+    src: url('../fonts/MyriadPro-Regular.otf'); 
+}
+
 html {
     overflow: -moz-scrollbars-vertical;
     overflow-y: auto;
     overflow-x: auto;
+}
+
+* {
+    font-family: 'Myriad';
 }
 
 body {
