@@ -1,4 +1,16 @@
 (function(){
+    window.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
+        console.log("error");
+        localStorage.clear();
+        document.getElementById("alert").innerHTML = "Error occured! clearing local storage. Page will refresh in 5 seconds";
+        document.getElementById("alert").style.background = "red";
+        document.getElementById("alert").classList.add("slideDown");
+        setTimeout(function(){
+            document.getElementById("alert").classList.remove("slideDown");
+        }, 5000);
+        setTimeout(function(){window.location.href="index.html";},5000);
+        return false;
+    }
     
     window.onload = function() {
         
@@ -247,3 +259,4 @@
     }
     
 }());
+

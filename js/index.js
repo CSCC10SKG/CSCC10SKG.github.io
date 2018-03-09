@@ -1,3 +1,4 @@
+
 var user = api.getUserName();
 // script generated from google API
 var map, infoWindow, geocoder, currentLoc, services, markers;
@@ -284,6 +285,19 @@ function loadEvent(id, title, desc, fee) {
 }
 
 (function(){
+    
+    window.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
+        console.log("error");
+        localStorage.clear();
+        document.getElementById("alert").innerHTML = "Error occured! clearing local storage. Page will refresh in 5 seconds";
+        document.getElementById("alert").style.background = "red";
+        document.getElementById("alert").classList.add("slideDown");
+        setTimeout(function(){
+            document.getElementById("alert").classList.remove("slideDown");
+        }, 5000);
+        setTimeout(function(){window.location.href="index.html";},5000);
+        return false;
+    }
     
     if (document.URL.indexOf('#load-event') >= 0) {
         console.log("loading events");
