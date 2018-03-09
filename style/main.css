@@ -819,6 +819,12 @@ header a {
         width: 30px;
         height: 30px;
     }
+    
+    .event-btn {
+        font-size: 9pt;
+        margin-top: 8px;
+        width: 48%;
+    }
 }
 
 /* MOBILE CSS */

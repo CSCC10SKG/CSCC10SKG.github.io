@@ -261,15 +261,15 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: flex-start;
 }
 
 .his-event {
     width: 200px;
     height: 200px;
-    margin: 5px;
+    margin: 15px;
     background: url("https://lorempixel.com/400/200/");
-    border: 1px solid #000;
+    border: 0px solid #000;
     background-size: 100% auto;
     background-repeat: no-repeat;
     background-position: center;
@@ -285,7 +285,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0,0,0,0.5);
 }
 
 .his-event-title {
@@ -294,7 +294,7 @@
     color: #ccc;
     width: 100%;
     height: 80%;
-    border-bottom: 2px solid #000;
+    border-bottom: 2px solid #333;
     line-height: 160px;
     vertical-align: middle;
     text-align: center;
@@ -312,7 +312,8 @@
     line-height: 40px;
     vertical-align: middle;
     text-align: center;
-    background: #dd2233;
+    background: #aa2222;
+    border-bottom: 1px solid #333;
 }
 
 .his-event-title:hover {
