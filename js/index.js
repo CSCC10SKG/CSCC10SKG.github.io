@@ -174,7 +174,7 @@ function updateEventLoc() {
                 e.childNodes[3].innerHTML = result[index].vicinity;
                 //addInfoBox(new google.maps.InfoWindow, result[index].geometry.location, e.childNodes[1].innerHTML);
                 var icon = {
-                    url: "https://maps.gstatic.com/mapfiles/place_api/icons/geocode-71.png",
+                    url: "../media/pin.png",
                     size: new google.maps.Size(71, 71),
                     origin: new google.maps.Point(0, 0),
                     anchor: new google.maps.Point(17, 34),
