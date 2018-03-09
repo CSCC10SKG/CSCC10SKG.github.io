@@ -293,9 +293,9 @@
     font-size: 14pt;
     color: #ccc;
     width: 100%;
-    height: 49.5%;
+    height: 80%;
     border-bottom: 2px solid #000;
-    line-height: 100px;
+    line-height: 160px;
     vertical-align: middle;
     text-align: center;
     opacity: 1;
@@ -307,10 +307,12 @@
     color: #ccc;
     opacity: 1;
     width: 100%;
-    height: 50%;
-    line-height: 100px;
+    height: 20%;
+    min-height: 40px;
+    line-height: 40px;
     vertical-align: middle;
     text-align: center;
+    background: #dd2233;
 }
 
 .his-event-title:hover {
