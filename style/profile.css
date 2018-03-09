@@ -563,4 +563,9 @@ line-height: 65px;
     .his-event-unfav:hover {
         font-size: 13pt;
     }
+    
+    .pr-tab {
+        width: 28%;
+        font-size: 10pt;
+    }
 }
