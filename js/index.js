@@ -1,3 +1,4 @@
+var user = api.getUserName();
 // script generated from google API
 var map, infoWindow, geocoder, currentLoc, services, markers;
 var currentCords = [43.6628956, -79.3978451];
@@ -186,30 +187,11 @@ function updateEventLoc() {
                     id: e.id
                 });
                 marker.addListener("click", function(){
-                    document.getElementById("event-title").innerHTML = document.querySelectorAll("#"+e.id+" .event-title")[0].innerHTML;
-                    document.getElementById("event-description").innerHTML = document.querySelectorAll("#"+e.id+" .event-desc")[0].innerHTML;
-                    document.getElementById("event-title").innerHTML += " | " + document.querySelectorAll("#"+e.id+" .event-date")[0].innerHTML;
-                    document.getElementById("event-fee").innerHTML = document.querySelectorAll("#"+e.id+" .event-fee")[0].innerHTML;                            
-                    document.getElementById("map-container").style.display = "none";
-                    document.getElementById("side-container").style.display = "none";
-                    document.getElementById("event-details-container").style.display = "flex";
-                    document.getElementById("event-pic").style.background = "url(https://lorempixel.com/400/200/)";
-                    document.getElementById("event-pic").style.backgroundPosition = "center";
-                    document.getElementById("event-pic").style.backgroundRepeat = "no-repeat";
-                    document.getElementById("feed").innerHTML = "";
-                    var interval = setInterval(function(){setFeed();}, 2500);
-                    document.getElementById("feed").scrollTop = document.getElementById("feed").scrollHeight;
-                    document.getElementById("event-favorite").addEventListener("click", function(){
-                        if (user != "") {
-                            api.addToFavs(user, e.id);
-                        }
-                    });
-                    document.getElementById("event-link").addEventListener("click", function(){
-                        clearInterval(interval);
-                        document.getElementById("map-container").style.display = "flex";
-                        document.getElementById("side-container").style.display = "flex";
-                        document.getElementById("event-details-container").style.display = "none";
-                    });
+                    var title = document.querySelectorAll("#"+e.id+" .event-title")[0].innerHTML;
+                    title += " | " + document.querySelectorAll("#"+e.id+" .event-date")[0].innerHTML;
+                    var desc = document.querySelectorAll("#"+e.id+" .event-desc")[0].innerHTML;
+                    var fee =  document.querySelectorAll("#"+e.id+" .event-fee")[0].innerHTML;
+                    loadEvent(e.id, title, desc, fee);
                 });
                 markers.push(marker);
             });  
@@ -253,16 +235,75 @@ function postFeed(user) {
     document.getElementById("feed").scrollTop = document.getElementById("feed").scrollHeight;
 }
 
+function loadEventWithID(id) {
+    var title = document.querySelectorAll("#"+id+" .event-title")[0].innerHTML;
+    title += " | " + document.querySelectorAll("#"+id+" .event-date")[0].innerHTML;
+    var desc = document.querySelectorAll("#"+id+" .event-desc")[0].innerHTML;
+    var fee =  document.querySelectorAll("#"+id+" .event-fee")[0].innerHTML;
+    loadEvent(id, title, desc, fee);
+}
+
+function loadEvent(id, title, desc, fee) {
+    document.getElementById("event-title").innerHTML = title;
+    document.getElementById("event-description").innerHTML = desc;
+    document.getElementById("event-fee").innerHTML = fee;            
+    document.getElementById("map-container").style.display = "none";
+    document.getElementById("side-container").style.display = "none";
+    document.getElementById("event-details-container").style.display = "flex";
+    document.getElementById("event-pic").style.background = "url(https://lorempixel.com/400/200/)";
+    document.getElementById("event-pic").style.backgroundPosition = "center";
+    document.getElementById("event-pic").style.backgroundRepeat = "no-repeat";
+    document.getElementById("feed").innerHTML = "";
+    var interval = setInterval(function(){setFeed();}, 2500);
+    document.getElementById("feed").scrollTop = document.getElementById("feed").scrollHeight;
+    document.getElementById("event-favorite").addEventListener("click", function(){
+        if (user != "") {
+            api.addToFavs(user, id, title, desc, fee);
+            document.getElementById("alert").innerHTML = "Event added to your Favorites";
+            document.getElementById("alert").style.background = "green";
+            document.getElementById("alert").classList.add("slideDown");
+            setTimeout(function(){
+                document.getElementById("alert").classList.remove("slideDown");
+            }, 5000);
+        } 
+        else {
+            document.getElementById("alert").innerHTML = "Login to Favorite!";
+            document.getElementById("alert").style.background = "red";
+            document.getElementById("alert").classList.add("slideDown");
+            setTimeout(function(){
+                document.getElementById("alert").classList.remove("slideDown");
+            }, 5000);
+        }
+    });
+    document.getElementById("event-link").addEventListener("click", function(){
+        clearInterval(interval);
+        document.getElementById("map-container").style.display = "flex";
+        document.getElementById("side-container").style.display = "flex";
+        document.getElementById("event-details-container").style.display = "none";
+    });
+}
+
 (function(){
     
+    if (document.URL.indexOf('#load-event') >= 0) {
+        console.log("loading events");
+        console.log(document.URL.split('#load-event='));
+        loadEventWithID(document.URL.split('#load-event=')[1]);
+    }
+    
+    
+
     document.getElementById("nav-items-container").style.display = "none";
     
     window.onload = function() {
-        var user = api.getUserName();
         if (user != "") {
             document.getElementById("profile-name").innerHTML = user.toUpperCase();
             document.getElementById("mobile-profile-name").innerHTML = user.toUpperCase();
         } 
+        
+        document.getElementById("alert").addEventListener("click", function(){
+            this.classList.remove("slideDown");
+        });
         
         document.getElementById("nav-button").addEventListener("click", function(){
             var cl = this.classList;
@@ -282,30 +323,11 @@ function postFeed(user) {
 				if (e.id != "addevent") {
 					var id = e.id;
 					e.addEventListener("click", function(){
-                        document.getElementById("event-title").innerHTML = document.querySelectorAll("#"+e.id+" .event-title")[0].innerHTML;
-                        document.getElementById("event-description").innerHTML = document.querySelectorAll("#"+e.id+" .event-desc")[0].innerHTML;
-                        document.getElementById("event-title").innerHTML += " | " + document.querySelectorAll("#"+e.id+" .event-date")[0].innerHTML;
-                        document.getElementById("event-fee").innerHTML = document.querySelectorAll("#"+e.id+" .event-fee")[0].innerHTML;                            
-						document.getElementById("map-container").style.display = "none";
-						document.getElementById("side-container").style.display = "none";
-						document.getElementById("event-details-container").style.display = "flex";
-						document.getElementById("event-pic").style.background = "url(https://lorempixel.com/400/200/)";
-						document.getElementById("event-pic").style.backgroundPosition = "center";
-						document.getElementById("event-pic").style.backgroundRepeat = "no-repeat";
-						document.getElementById("feed").innerHTML = "";
-						var interval = setInterval(function(){setFeed();}, 2500);
-						document.getElementById("feed").scrollTop = document.getElementById("feed").scrollHeight;
-                        document.getElementById("event-favorite").addEventListener("click", function(){
-                            if (user != "") {
-                                api.addToFavs(user, e.id);
-                            }
-                        });
-                        document.getElementById("event-link").addEventListener("click", function(){
-							clearInterval(interval);
-							document.getElementById("map-container").style.display = "flex";
-							document.getElementById("side-container").style.display = "flex";
-							document.getElementById("event-details-container").style.display = "none";
-						});
+                        var title = document.querySelectorAll("#"+e.id+" .event-title")[0].innerHTML;
+                        title += " | " + document.querySelectorAll("#"+e.id+" .event-date")[0].innerHTML;
+                        var desc = document.querySelectorAll("#"+e.id+" .event-desc")[0].innerHTML;
+                        var fee =  document.querySelectorAll("#"+e.id+" .event-fee")[0].innerHTML;
+                        loadEvent(e.id, title, desc, fee);
 					});
 				}
             });
@@ -339,30 +361,11 @@ function postFeed(user) {
                     }
                     event.addEventListener("click", function(){
                         var data = api.getEvent(e.id);
-						document.getElementById("event-title").innerHTML = data.name;
-                        document.getElementById("event-description").innerHTML = data.desc;
-                        document.getElementById("event-title").innerHTML += " | " + data.date;
-                        document.getElementById("event-fee").innerHTML = data.fee;                            
-						document.getElementById("map-container").style.display = "none";
-						document.getElementById("side-container").style.display = "none";
-						document.getElementById("event-details-container").style.display = "flex";
-						document.getElementById("event-pic").style.background = "url(https://lorempixel.com/400/200/)";
-						document.getElementById("event-pic").style.backgroundPosition = "center";
-						document.getElementById("event-pic").style.backgroundRepeat = "no-repeat";
-						document.getElementById("feed").innerHTML = "";
-						var interval = setInterval(function(){setFeed();}, 2500);
-						document.getElementById("feed").scrollTop = document.getElementById("feed").scrollHeight;
-                        document.getElementById("event-favorite").addEventListener("click", function(){
-                            if (user != "") {
-                                api.addToFavs(user, e.id);
-                            }
-                        });
-                        document.getElementById("event-link").addEventListener("click", function(){
-							clearInterval(interval);
-							document.getElementById("map-container").style.display = "flex";
-							document.getElementById("side-container").style.display = "flex";
-							document.getElementById("event-details-container").style.display = "none";
-						});
+						var title = data.name;
+                        title += " | " + data.date;
+                        var desc = data.desc;
+                        var fee =  data.fee;
+                        loadEvent(e.id, title, desc, fee);
 					});
                 });
             }

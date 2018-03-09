@@ -73,12 +73,15 @@
             var isPromo = document.getElementById("is-promo").checked;
             
             var data = api.addEvent("e"+guid(), name, desc, date, fee, isPromo);
+            api.addToMyEvents(user, data.id, data.name, data.desc, data.date, data.fee);
             loadProfile(api.getUserInfo(user));
         });
         
         document.getElementById("cancel-event").addEventListener("click", function(){
             loadProfile(api.getUserInfo(user));
         });
+        
+        
         
         setTabCss();
 
@@ -91,6 +94,58 @@
                 this.classList.add("active-pr-tab");
                 setTabCss();
             });
+        }
+        
+        function loadEvents() {
+            document.getElementById("favs").innerHTML = "";
+            document.getElementById("evts").innerHTML = "";
+            // add listners
+            var data = api.getUserInfo(user);
+            data.favs.forEach(function(d){
+                var div = document.createElement('div');
+                div.id = d.id;
+                div.classList.add("his-event");
+                div.classList.add("fav");
+                div.innerHTML = `
+                    <div class="hiv-event-overlay">
+                        <div class="his-event-title">${d.title.split("|")[0]}</div>
+                        <div class="his-event-unfav">Remove</div>
+                    </div>
+                `;
+                document.getElementById("favs").append(div);
+            });
+            
+            data.myevents.forEach(function(d){
+                var div = document.createElement('div');
+                div.id = d.id;
+                div.classList.add("his-event");
+                div.classList.add("evt");
+                div.innerHTML = `
+                    <div class="hiv-event-overlay">
+                        <div class="his-event-title">${d.title.split("|")[0]}</div>
+                        <div class="his-event-unfav">Remove Listing</div>
+                    </div>
+                `;
+                document.getElementById("evts").append(div);
+            });
+            var events = document.querySelectorAll(".his-event");
+            events.forEach(function(d){
+                d.children[0].children[1].addEventListener("click", function(){
+                    if (d.classList.contains("fav")) {
+                        api.removeFavs(user, d.id);
+                        loadEvents();
+                    }
+                    else {
+                        api.removeEvts(user, d.id);
+                        api.removeEvent(d.id);
+                        loadEvents();
+                    }
+                });
+                d.children[0].children[0].addEventListener("click", function(){
+                    window.location.href = "index.html#load-event="+d.id;
+                });
+            });
+            
         }
 
         function setTabCss() {
@@ -130,11 +185,12 @@
             document.getElementById("profile-pic").style.backgroundPosition = "center";
             console.log(user, user.indexOf("-bo"));
             if (user.indexOf("-bo") > 0) {
-                console.log("bo");
                 document.getElementById("add-event").style.display = "show";
+                document.getElementById("my-events").style.display = "show";
             }
             else {
                 document.getElementById("add-event").style.display = "none";
+                document.getElementById("my-events").style.display = "none";
             }function setTabCss() {
                 var tabs = document.getElementsByClassName("pr-tab");
                 for (var i = 0; i < tabs.length; i++) {
@@ -143,7 +199,7 @@
                     }
                 }
             }
-            
+            loadEvents();
         }
         
         function loadEditProfile(data) {

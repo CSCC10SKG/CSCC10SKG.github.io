@@ -79,15 +79,51 @@ var api = (function(){
         return items[username];
     }
 
-    module.addToFavs = function(user, fav) {
-        if (items[user].favs.indexOf(fav) < 0)
-            items[user].favs.push(fav);
+    module.addToFavs = function(user, id, title, desc, date, fee) {
+        var data = {id:id, title:title, desc:desc, date:date, fee:fee};
+        var inArray = false;
+        for (var i = 0; i < items[user].favs.length; i++) {
+            if (items[user].favs[i].id == id){
+                inArray = true;
+                break;
+            }
+        }
+        if (!inArray)
+            items[user].favs.push(data);
         localStorage.setItem("items", JSON.stringify(items));
     }
 
-    module.addToMyEvents = function(user, evt) {
-        if (items[user].evts.indexOf(evt) < 0)
-            items[user].myevents.push(evt);
+    module.addToMyEvents = function(user, id, title, desc, date, fee) {
+        var data = {id:id, title:title, desc:desc, date:date, fee:fee};
+        var inArray = false;
+        for (var i = 0; i < items[user].myevents.length; i++) {
+            if (items[user].myevents[i].id == id){
+                inArray = true;
+                break;
+            }
+        }
+        if (!inArray)
+            items[user].myevents.push(data);
+        localStorage.setItem("items", JSON.stringify(items));
+    }
+    
+    module.removeFavs = function(user, id){
+        for (var i = 0; i < items[user].favs.length; i++) {
+            if (items[user].favs[i].id == id){
+                items[user].favs.splice(i, 1);
+                break;
+            }
+        }
+        localStorage.setItem("items", JSON.stringify(items));
+    }
+    
+    module.removeEvts = function(user, id){
+        for (var i = 0; i < items[user].myevents.length; i++) {
+            if (items[user].myevents[i].id == id){
+                items[user].myevents.splice(i, 1);
+                break;
+            }
+        }
         localStorage.setItem("items", JSON.stringify(items));
     }
     
@@ -121,6 +157,17 @@ var api = (function(){
     module.addEvent = function(id, name, date, desc, fee, isPromo) {
         console.log(typeof(evts));
         evts.push({id: id, name: name, date: date, desc: desc, fee: fee, isPromo: isPromo});
+        localStorage.setItem("events", JSON.stringify(evts));
+        return {id: id, name: name, date: date, desc: desc, fee: fee, isPromo: isPromo};
+    }
+    
+    module.removeEvent = function(id) {
+        for (var i = 0; i < evts.length; i++) {
+            if (evts[i].id == id) {
+                evts.splice(i, 1);
+                break;
+            }
+        }
         localStorage.setItem("events", JSON.stringify(evts));
     }
 
