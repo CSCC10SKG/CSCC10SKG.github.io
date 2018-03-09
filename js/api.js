@@ -60,19 +60,35 @@ var api = (function(){
     
     module.register = function(username, password) {
         this.loggedin = true;
-        items[username] = {password: password};
+        items[username] = {password: password, fullname:"", pic:"", favs:[], myevents:[]};
         this.currentUser = username;
         localStorage.setItem("loggedin", JSON.stringify(this.loggedin));
         localStorage.setItem("items", JSON.stringify(items));
         localStorage.setItem("currentUser", this.currentUser);
-        return {password: password};
+        return {password: password, fullname:"", pic:"", favs:[], myevents:[]};
     }
     
     module.updateProfile = function(oldusername, username, password, fullname, pic) {
+        var oldUser = items[oldusername];
         delete items[oldusername];
-        items[username] = {password:password, fullname:fullname, pic:pic};
+        if (oldUser)
+            items[username] = {password:password, fullname:fullname, pic:pic, favs: oldUser.favs, myevents: oldUser.myevents};
+        else
+            items[username] = {password:password, fullname:fullname, pic:pic, favs: [], myevents: []};        
         localStorage.setItem("items", JSON.stringify(items));
         return items[username];
+    }
+
+    module.addToFavs = function(user, fav) {
+        if (items[user].favs.indexOf(fav) < 0)
+            items[user].favs.push(fav);
+        localStorage.setItem("items", JSON.stringify(items));
+    }
+
+    module.addToMyEvents = function(user, evt) {
+        if (items[user].evts.indexOf(evt) < 0)
+            items[user].myevents.push(evt);
+        localStorage.setItem("items", JSON.stringify(items));
     }
     
     module.getUserName = function() {

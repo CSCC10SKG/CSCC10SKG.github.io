@@ -80,6 +80,42 @@
             loadProfile(api.getUserInfo(user));
         });
         
+        setTabCss();
+
+        var tabs = document.getElementsByClassName("pr-tab");
+        for (var i = 0; i < tabs.length; i++) {
+            tabs[i].addEventListener("click", function(){
+                for (var j = 0; j < tabs.length; j++) {
+                    tabs[j].classList.remove("active-pr-tab");
+                }
+                this.classList.add("active-pr-tab");
+                setTabCss();
+            });
+        }
+
+        function setTabCss() {
+            var tabs = document.getElementsByClassName("pr-tab");
+            for (var i = 0; i < tabs.length; i++) {
+                if (tabs[i].classList.contains("active-pr-tab")) {
+                    tabs[i].style.background = "#555";
+                    tabs[i].style.color = "#ddd";
+                }
+                else {
+                    tabs[i].style.background = "";
+                    tabs[i].style.color = "#3c3d3f";
+                }
+            }
+
+            if (document.getElementById("favorites").classList.contains("active-pr-tab")) {
+                document.getElementById("favs").style.display = "flex";
+                document.getElementById("evts").style.display = "none";
+            }
+            else {
+                document.getElementById("favs").style.display = "none";
+                document.getElementById("evts").style.display = "flex";
+            }
+        }
+
         function loadProfile(data) {
             document.getElementById("login-form-container").style.display = "none";
             document.getElementById("edit-profile-form").style.display = "none";
@@ -99,6 +135,13 @@
             }
             else {
                 document.getElementById("add-event").style.display = "none";
+            }function setTabCss() {
+                var tabs = document.getElementsByClassName("pr-tab");
+                for (var i = 0; i < tabs.length; i++) {
+                    if (tabs[i].classList.contains("active_tab")) {
+                        tabs[i].background = "#555"
+                    }
+                }
             }
             
         }

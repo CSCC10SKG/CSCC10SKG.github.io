@@ -129,7 +129,7 @@ function getLocation(lat, lng, update, callback=null) {
 function searchLocation(lat, lon, callback) {
     var request = {
         location:  new google.maps.LatLng(lat, lon),
-        radius: '10000'
+        radius: '30000'
     };
     
     services.nearbySearch(request, callback);
@@ -199,6 +199,11 @@ function updateEventLoc() {
                     document.getElementById("feed").innerHTML = "";
                     var interval = setInterval(function(){setFeed();}, 2500);
                     document.getElementById("feed").scrollTop = document.getElementById("feed").scrollHeight;
+                    document.getElementById("event-favorite").addEventListener("click", function(){
+                        if (user != "") {
+                            api.addToFavs(user, e.id);
+                        }
+                    });
                     document.getElementById("event-link").addEventListener("click", function(){
                         clearInterval(interval);
                         document.getElementById("map-container").style.display = "flex";
@@ -290,7 +295,12 @@ function postFeed(user) {
 						document.getElementById("feed").innerHTML = "";
 						var interval = setInterval(function(){setFeed();}, 2500);
 						document.getElementById("feed").scrollTop = document.getElementById("feed").scrollHeight;
-						document.getElementById("event-link").addEventListener("click", function(){
+                        document.getElementById("event-favorite").addEventListener("click", function(){
+                            if (user != "") {
+                                api.addToFavs(user, e.id);
+                            }
+                        });
+                        document.getElementById("event-link").addEventListener("click", function(){
 							clearInterval(interval);
 							document.getElementById("map-container").style.display = "flex";
 							document.getElementById("side-container").style.display = "flex";
@@ -342,7 +352,12 @@ function postFeed(user) {
 						document.getElementById("feed").innerHTML = "";
 						var interval = setInterval(function(){setFeed();}, 2500);
 						document.getElementById("feed").scrollTop = document.getElementById("feed").scrollHeight;
-						document.getElementById("event-link").addEventListener("click", function(){
+                        document.getElementById("event-favorite").addEventListener("click", function(){
+                            if (user != "") {
+                                api.addToFavs(user, e.id);
+                            }
+                        });
+                        document.getElementById("event-link").addEventListener("click", function(){
 							clearInterval(interval);
 							document.getElementById("map-container").style.display = "flex";
 							document.getElementById("side-container").style.display = "flex";

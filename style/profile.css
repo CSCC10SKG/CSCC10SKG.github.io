@@ -196,11 +196,124 @@
     font-size: 20pt;
 }
 
-#history {
+#history-container {
     width: 100%;
     height: 65%;
     overflow-y: auto;
     overflow-x: hidden;
+    border-bottom: 1px solid #aaa;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#history-tab-container {
+    width: 100%;
+    height: 5%;
+    min-height: 30px;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    line-height: 30px;
+    border-bottom: 1px solid #aaa;
+}
+
+.pr-tab {
+    transition-duration: 0.3s;
+    width: 24%;
+    padding-left: 0.5%;
+    border: none;
+    border-left: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    color: #3f3c3c;
+    height: 100%;
+}
+
+.pr-tab:hover {
+    transition-duration: 0.3s;
+    background: #ddd;
+    border-bottom: 1px solid #555;
+    border-left: 1px solid #555;
+    cursor: pointer;
+}
+
+.pr-tab:active {
+    transition-duration: 0.3s;
+    background: #aaa;
+}
+
+.actve-pr-tab {
+    background: #555;
+}
+
+#history {
+    width: 100%;
+    height: 95%;
+    overflow-y: auto;
+}
+
+.his-cont {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.his-event {
+    width: 200px;
+    height: 200px;
+    margin: 5px;
+    background: url("https://lorempixel.com/400/200/");
+    border: 1px solid #000;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #aaa;
+    filter: blur(100%);
+}
+
+.hiv-event-overlay {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0,0,0,0.3);
+}
+
+.his-event-title {
+    font-weight: bold;
+    font-size: 14pt;
+    color: #bbb;
+    width: 100%;
+    height: 49.5%;
+    border-bottom: 2px solid #000;
+    line-height: 100px;
+    vertical-align: middle;
+    text-align: center;
+    opacity: 1;
+}
+
+.his-event-unfav {
+    font-size: 14pt;
+    color: #bbb;
+    opacity: 1;
+    width: 100%;
+    height: 50%;
+    line-height: 100px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.his-event-title:hover {
+    transition-duration: 0.3s;
+    cursor: pointer;
+    color: #fff;
 }
 
 #edit-profile-form {
@@ -316,8 +429,10 @@
     justify-content: space-between;
     margin-bottom: 10px;
 }
+line-height: 65px;
 
-.event-label {
+        line-height: 65px;
+        .event-label {
     width: 45%;
     text-align: right;
     font-size: 15pt;
@@ -400,5 +515,21 @@
         margin: 0 !important;
         padding: 0 !important;
         margin-left: 10px !important;
+    }
+
+    .his-event {
+        width: 130px;
+        height: 130px;
+    }
+
+    .his-event-title {
+        font-size: 12pt;
+        line-height: 65px;
+        
+    }
+
+    .his-event-unfav {
+        font-size: 12pt;
+        line-height: 65px;
     }
 }
