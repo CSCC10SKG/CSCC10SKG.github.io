@@ -237,6 +237,7 @@ function postFeed(user) {
 }
 
 function loadEventWithID(id) {
+    console.log(id);
     var title = document.querySelectorAll("#"+id+" .event-title")[0].innerHTML;
     title += " | " + document.querySelectorAll("#"+id+" .event-date")[0].innerHTML;
     var desc = document.querySelectorAll("#"+id+" .event-desc")[0].innerHTML;
@@ -298,14 +299,6 @@ function loadEvent(id, title, desc, fee) {
         setTimeout(function(){window.location.href="index.html";},5000);
         return false;
     }
-    
-    if (document.URL.indexOf('#load-event') >= 0) {
-        console.log("loading events");
-        console.log(document.URL.split('#load-event='));
-        loadEventWithID(document.URL.split('#load-event=')[1]);
-    }
-    
-    
 
     document.getElementById("nav-items-container").style.display = "none";
     
@@ -396,6 +389,12 @@ function loadEvent(id, title, desc, fee) {
                 postFeed(user);
             }
         });
+        
+        if (document.URL.indexOf("#load-event") >= 0) {
+            console.log("loading events");
+            console.log(document.URL.split("#load-event="));
+            loadEventWithID(document.URL.split("#load-event=")[1]);
+        }
 		
 //		// Only do things when the document is fully loaded
 //		var eventadder = document.getElementById("addevent");
