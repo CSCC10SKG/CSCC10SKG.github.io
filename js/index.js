@@ -288,7 +288,7 @@ function loadEvent(id, title, desc, fee) {
 (function(){
     
     window.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
-        console.log("error");
+        console.log("error", errorMsg, url, lineNumber);
         localStorage.clear();
         document.getElementById("alert").innerHTML = "Error occured! clearing local storage. Page will refresh in 5 seconds";
         document.getElementById("alert").style.background = "red";
