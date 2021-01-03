@@ -296,7 +296,7 @@ function loadEvent(id, title, desc, fee) {
         setTimeout(function(){
             document.getElementById("alert").classList.remove("slideDown");
         }, 5000);
-        setTimeout(function(){window.location.href="index.html";},5000);
+        //setTimeout(function(){window.location.href="index.html";},5000);
         return false;
     }
 
