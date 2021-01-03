@@ -113,12 +113,7 @@ function getLocation(lat, lng, update, callback=null) {
         if (status == 'OK') {
             currentLoc = results[0].formatted_address.split(",")[0];
             console.log("results", results[0]);
-            if (results[0].geometry.bounds) {
-                currentCords = [results[0].geometry.bounds.f.b, results[0].geometry.bounds.b.b];
-            }
-            else {
-                currentCords = [results[0].geometry.viewport.f.b, results[0].geometry.viewport.b.b];
-            }
+	    currentCords = [results[0].geometry.location.lng(), results[0].geometry.location.lat()];
             if (update) updateEventLoc();
             if (callback) callback(null, currentLoc);
         } else {
@@ -290,7 +285,7 @@ function loadEvent(id, title, desc, fee) {
     window.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
         console.log("error", errorMsg, url, lineNumber);
         localStorage.clear();
-        document.getElementById("alert").innerHTML = "Error occured! clearing local storage. Page will refresh in 5 seconds";
+        document.getElementById("alert").innerHTML = "Error occured! clearing local storage. Please report to https://github.com/CSCC10SKG/CSCC10SKG.github.io/";
         document.getElementById("alert").style.background = "red";
         document.getElementById("alert").classList.add("slideDown");
         setTimeout(function(){
