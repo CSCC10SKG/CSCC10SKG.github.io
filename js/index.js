@@ -112,7 +112,7 @@ function getLocation(lat, lng, update, callback=null) {
     geocoder.geocode( { 'location': latlng}, function(results, status) {
         if (status == 'OK') {
             currentLoc = results[0].formatted_address.split(",")[0];
-            console.log(results[0]);
+            console.log("results", results[0]);
             if (results[0].geometry.bounds) {
                 currentCords = [results[0].geometry.bounds.f.b, results[0].geometry.bounds.b.b];
             }
